@@ -28,7 +28,7 @@
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
-    padding: 1.5rem 1.5rem 3rem; /* Ajustado para el navbar */
+    padding: 2rem 1rem 3rem;
   }
 
   .page-bg {
@@ -39,65 +39,31 @@
       #fdf8f0;
   }
 
-  .horse-bg {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.22;
-    -webkit-mask-image: radial-gradient(ellipse 100% 100% at 85% 85%, black 40%, transparent 80%);
-    mask-image: radial-gradient(ellipse 100% 100% at 85% 85%, black 40%, transparent 80%);
-    background-size: cover;
-    background-position: center 30%;
-    /* PEGA AQUÍ TU FONDO DE CABALLO BASE 64 */
-    background-image: url('data:image/jpeg;base64,...'); 
-  }
-
-  /* NUEVO: ESTILOS DEL NAVBAR Y TÍTULO */
-  .top-navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 900px;
-    margin: 0 auto 2rem auto;
+  header {
     position: relative;
     z-index: 2;
-    animation: fadeUp 0.6s ease both;
-  }
-
-  .logo-disfrutar {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: var(--text);
-  }
-
-  .logo-disfrutar span {
-    color: var(--amber);
-  }
-
-  .profile-photo img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid var(--amber);
-  }
-
-  .page-title-section {
     text-align: center;
-    position: relative;
-    z-index: 2;
     margin-bottom: 2.5rem;
     animation: fadeUp 0.6s ease both;
-    animation-delay: 0.1s;
   }
 
-  .page-title-section h1 {
+  .icon-wrap {
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .icon-wrap img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    border: 3px solid var(--amber);
+    display: block;
+    margin: 0 auto;
+  }
+
+  header h1 {
     font-family: 'Playfair Display', serif;
     font-size: 32px;
     font-weight: 700;
@@ -106,11 +72,9 @@
     line-height: 1.2;
   }
 
-  .page-title-section h1 span {
-    color: var(--amber);
-  }
+  header h1 span { color: var(--amber); }
 
-  .page-title-section p {
+  header p {
     font-size: 14px;
     color: var(--text-muted);
     margin-top: 6px;
@@ -125,7 +89,6 @@
   .ornament span { width: 40px; height: 1px; background: var(--border); }
   .ornament i { font-size: 12px; color: var(--amber); font-style: normal; }
 
-  /* ESTILOS DEL CALENDARIO */
   .days-grid {
     position: relative;
     z-index: 2;
@@ -138,7 +101,7 @@
 
   @media (max-width: 640px) {
     .days-grid { grid-template-columns: 1fr; }
-    .page-title-section h1 { font-size: 24px; }
+    header h1 { font-size: 24px; }
   }
 
   .day-col {
@@ -147,8 +110,8 @@
     gap: 10px;
     animation: fadeUp 0.6s ease both;
   }
-  .day-col:nth-child(2) { animation-delay: 0.2s; }
-  .day-col:nth-child(3) { animation-delay: 0.3s; }
+  .day-col:nth-child(2) { animation-delay: 0.1s; }
+  .day-col:nth-child(3) { animation-delay: 0.2s; }
 
   .day-header {
     border-radius: 12px;
@@ -305,29 +268,48 @@
     from { opacity: 0; transform: translateY(16px); }
     to   { opacity: 1; transform: translateY(0); }
   }
+
+  .horse-bg {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.22;
+    -webkit-mask-image: radial-gradient(ellipse 100% 100% at 85% 85%, black 40%, transparent 80%);
+    mask-image: radial-gradient(ellipse 100% 100% at 85% 85%, black 40%, transparent 80%);
+    background-size: cover;
+    background-position: center 30%;
+    background-image: url('https://raw.githubusercontent.com/webdedisfrutar/WEB/main/coche%20caballos.jpg');
+  }
 </style>
 </head>
 <body>
+
+<nav style="position:fixed; top:0; right:0; z-index:100; padding:12px 20px;">
+  <a href="https://photos.app.goo.gl/ZQE2um6Pjm17b5YaA" target="_blank"
+     style="display:inline-flex; align-items:center; gap:8px; background:var(--amber); color:#fff; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; padding:10px 18px; border-radius:30px; text-decoration:none; box-shadow:0 2px 12px rgba(0,0,0,0.15);">
+    📸 Fotos del viaje
+  </a>
+</nav>
+
 <div class="page-bg"></div>
 <div class="horse-bg"></div>
 
-<nav class="top-navbar">
-  <div class="logo-disfrutar">DISFRU<span>TAR</span></div>
-  <div class="profile-photo">
-    <img src="data:image/png;base64,..." alt="Grupo Jerez 2026">
-  </div>
-</nav>
-
-<div class="page-title-section">
+<header>
+  <span class="icon-wrap"><img src="https://raw.githubusercontent.com/webdedisfrutar/WEB/main/IMG_2528.jpg" alt="Grupo Jerez 2026"></span>
   <h1>Feria del Caballo · <span>Jerez</span> 2026</h1>
   <div class="ornament">
     <span></span><i>✦</i><span></span>
   </div>
   <p>Programa del viaje</p>
-</div>
+</header>
 
 <div class="days-grid">
 
+  <!-- DÍA 1 -->
   <div class="day-col">
     <div class="day-header d1">
       <div class="weekday">Jueves</div>
@@ -335,7 +317,7 @@
       <div class="month">Mayo 2026</div>
       <div class="sublabel">Día 1 · Llegada</div>
     </div>
-    <div class="events-list" id="d1-events">
+    <div class="events-list">
       <div class="event-card" style="--accent:#444441;">
         <div class="ev-time">08:55 → 10:40</div>
         <div class="ev-name">✈ BCN → SVQ</div>
@@ -357,6 +339,7 @@
     </div>
   </div>
 
+  <!-- DÍA 2 -->
   <div class="day-col">
     <div class="day-header d2">
       <div class="weekday">Viernes</div>
@@ -364,7 +347,7 @@
       <div class="month">Mayo 2026</div>
       <div class="sublabel">Día 2 · FERIA</div>
     </div>
-    <div class="events-list" id="d2-events">
+    <div class="events-list">
       <div class="event-card" style="--accent:#185FA5;">
         <div class="ev-time">12:00</div>
         <div class="ev-name">🍷 El Lenguaje de la Tiza — Bodegas Lustau</div>
@@ -392,6 +375,7 @@
     </div>
   </div>
 
+  <!-- DÍA 3 -->
   <div class="day-col">
     <div class="day-header d3">
       <div class="weekday">Sábado</div>
@@ -399,7 +383,7 @@
       <div class="month">Mayo 2026</div>
       <div class="sublabel">Día 3 · Vuelta</div>
     </div>
-    <div class="events-list" id="d3-events">
+    <div class="events-list">
       <div class="event-card" style="--accent:#185FA5;">
         <div class="ev-time">11:00</div>
         <div class="ev-name">🥃 Visita y Degustación Premium — Bodegas Fundador</div>
@@ -427,10 +411,10 @@
 
 <div style="text-align:center; margin: 2rem auto 0; max-width: 900px; position: relative; z-index: 2;">
   <a href="https://tricount.com/tjNjvvpPmVTPaeGsGy"
-     style="display:inline-block; background:#BA7517; color:#fff; font-family:'Playfair Display',serif; font-size:20px; font-weight:700; letter-spacing:1px; padding:18px 48px; border-radius:12px; text-decoration:none; transition:background 0.2s;"
-     onmouseover="this.style.background='#993C1D'" onmouseout="this.style.background='#BA7517'">
+     style="display:inline-block; background:#BA7517; color:#fff; font-family:'Playfair Display',serif; font-size:20px; font-weight:700; letter-spacing:1px; padding:18px 48px; border-radius:12px; text-decoration:none;">
     💰 GASTOS DE VIAJE
   </a>
+  <p style="font-size:12px; color:var(--text-muted); margin-top:10px; font-style:italic;">⚠️ Para acceder hay que instalar la app <strong>Tricount</strong> previamente</p>
 </div>
 
 <div style="max-width:900px; margin: 1.5rem auto 0; position: relative; z-index: 2; background: var(--card-bg); border: 0.5px solid var(--border); border-radius: 12px; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
