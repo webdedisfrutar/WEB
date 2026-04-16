@@ -84,10 +84,13 @@
 
   .ornament {
     display: flex; align-items: center; justify-content: center;
-    gap: 10px; margin: 14px 0;
+    margin: 10px 0;
   }
-  .ornament span { width: 40px; height: 1px; background: var(--border); }
-  .ornament i { font-size: 12px; color: var(--amber); font-style: normal; }
+  .ornament img {
+    width: 160px;
+    opacity: 0.82;
+    display: block;
+  }
 
   .days-grid {
     position: relative;
@@ -237,7 +240,8 @@
     max-width: 900px;
     margin: 2rem auto 0;
     padding-top: 1.5rem;
-    border-top: 0.5px solid var(--border);
+    border-top: none;
+    position: relative;
   }
 
   .leg-item {
@@ -309,9 +313,7 @@
 
 <header style="position:relative; z-index:2; text-align:center; margin-bottom:2.5rem; animation: fadeUp 0.6s ease both;">
   <h1 style="font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:var(--text); letter-spacing:-0.5px; line-height:1.2;">Feria del Caballo · <span style="color:var(--amber);">Jerez</span> 2026</h1>
-  <div class="ornament">
-    <span></span><i>✦</i><span></span>
-  </div>
+  <div class="ornament"><img src="https://raw.githubusercontent.com/webdedisfrutar/WEB/main/arco.png" alt="flores"></div>
   <p style="font-size:14px; color:var(--text-muted); margin-top:6px; font-weight:300; letter-spacing:0.5px;">Programa del viaje</p>
 </header>
 
@@ -409,7 +411,8 @@
 
 </div>
 
-<div class="legend">
+<div style="text-align:center; max-width:900px; margin: 2rem auto 0; position:relative; z-index:2;"><img src="https://raw.githubusercontent.com/webdedisfrutar/WEB/main/flores.png" alt="arco" style="width:320px; opacity:0.85;"></div>
+<div class="legend" style="border-top:none; margin-top:1rem;">
   <div class="leg-item"><div class="leg-dot" style="background:#639922"></div> Comida / Cena</div>
   <div class="leg-item"><div class="leg-dot" style="background:#BA7517"></div> Fiesta / Caseta</div>
   <div class="leg-item"><div class="leg-dot" style="background:#185FA5"></div> Visita / Actividad</div>
