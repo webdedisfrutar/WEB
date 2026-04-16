@@ -288,23 +288,31 @@
 </head>
 <body>
 
-<nav style="position:fixed; top:0; right:0; z-index:100; padding:12px 20px;">
+<!-- SITE HEADER -->
+<header style="position:relative; z-index:10; display:flex; align-items:center; justify-content:space-between; max-width:900px; margin:0 auto 2.5rem; padding:0 4px; animation: fadeUp 0.4s ease both;">
+  <div style="display:flex; align-items:center; gap:14px;">
+    <img src="https://raw.githubusercontent.com/webdedisfrutar/WEB/main/IMG_2528.jpg"
+         style="width:52px; height:52px; border-radius:50%; object-fit:cover; border:2px solid var(--amber); flex-shrink:0;" alt="Disfrutar">
+    <div>
+      <div style="font-family:'Playfair Display',serif; font-size:24px; font-weight:700; letter-spacing:4px; color:var(--text); line-height:1;">DISFRUTAR</div>
+      <div style="font-size:9px; font-weight:300; letter-spacing:2.5px; color:var(--amber); text-transform:uppercase; margin-top:3px;">viajes · experiencias</div>
+    </div>
+  </div>
   <a href="https://www.icloud.com/sharedalbum/#B1k5qXGF1EWxal" target="_blank"
-     style="display:inline-flex; align-items:center; gap:8px; background:var(--amber); color:#fff; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500; padding:10px 18px; border-radius:30px; text-decoration:none; box-shadow:0 2px 12px rgba(0,0,0,0.15);">
+     style="display:inline-flex; align-items:center; gap:7px; color:var(--amber); font-family:'DM Sans',sans-serif; font-size:12px; font-weight:500; padding:8px 16px; border-radius:30px; text-decoration:none; border:1.5px solid var(--amber); letter-spacing:0.3px; white-space:nowrap;">
     📸 Fotos del viaje
   </a>
-</nav>
+</header>
 
 <div class="page-bg"></div>
 <div class="horse-bg"></div>
 
-<header>
-  <span class="icon-wrap"><img src="https://raw.githubusercontent.com/webdedisfrutar/WEB/main/IMG_2528.jpg" alt="Grupo Jerez 2026"></span>
-  <h1>Feria del Caballo · <span>Jerez</span> 2026</h1>
+<header style="position:relative; z-index:2; text-align:center; margin-bottom:2.5rem; animation: fadeUp 0.6s ease both;">
+  <h1 style="font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:var(--text); letter-spacing:-0.5px; line-height:1.2;">Feria del Caballo · <span style="color:var(--amber);">Jerez</span> 2026</h1>
   <div class="ornament">
     <span></span><i>✦</i><span></span>
   </div>
-  <p>Programa del viaje</p>
+  <p style="font-size:14px; color:var(--text-muted); margin-top:6px; font-weight:300; letter-spacing:0.5px;">Programa del viaje</p>
 </header>
 
 <div class="days-grid">
