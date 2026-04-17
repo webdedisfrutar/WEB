@@ -362,8 +362,16 @@
         <div class="ev-time">12:00</div>
         <div class="ev-name">🍷 El Lenguaje de la Tiza — Bodegas Lustau</div>
         <div class="ev-note">12:00h · 10 tickets · Calle Arcos 53, Jerez</div>
-        <span class="ev-tag tag-visita">Visita</span>
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-top:6px;">
+          <span class="ev-tag tag-visita">Visita</span>
+          <button onclick="document.getElementById('modal-cata').style.display='flex'"
+             style="font-size:10px; font-weight:600; letter-spacing:0.8px; background:#2E7D32; color:#fff; padding:4px 12px; border-radius:20px; border:none; cursor:pointer;">CATA</button>
+        </div>
       </div>
+
+      <!-- MODAL CATA -->
+
+
       <div class="event-card" style="--accent:#639922;">
         <div class="ev-time">14:00</div>
         <div class="ev-name">🎶 Tabanco El Pasaje</div>
@@ -375,17 +383,7 @@
         </div>
       </div>
 
-      <!-- MODAL MENÚ -->
-      <div id="modal-menu" onclick="if(event.target===this)this.style.display='none'"
-           style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center; padding:20px;">
-        <div style="position:relative; max-width:90vw; max-height:90vh; background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,0.4);">
-          <button onclick="document.getElementById('modal-menu').style.display='none'"
-                  style="position:absolute; top:10px; right:12px; background:rgba(0,0,0,0.5); color:#fff; border:none; border-radius:50%; width:30px; height:30px; font-size:16px; cursor:pointer; z-index:10; line-height:1;">✕</button>
-          <img src="https://raw.githubusercontent.com/webdedisfrutar/WEB/main/MENU%20EL%20PASAJE.JPG"
-               alt="Menú El Pasaje"
-               style="display:block; max-width:90vw; max-height:88vh; object-fit:contain;">
-        </div>
-      </div>
+
       <div class="event-card" style="--accent:#993C1D;">
         <div class="ev-time">19:00</div>
         <div class="ev-name">🐂 Corrida de Toros — Plaza de Jerez</div>
@@ -422,7 +420,11 @@
         <div class="ev-time">11:00</div>
         <div class="ev-name">🥃 Visita y Degustación Premium — Bodegas Fundador</div>
         <div class="ev-note">Harveys VORS · 10 personas · C/ Puerta de Rota s/n, Jerez · Llegar 10 min antes</div>
-        <span class="ev-tag tag-visita">Visita</span>
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-top:6px;">
+          <span class="ev-tag tag-visita">Visita</span>
+          <button onclick="document.getElementById('modal-cata-fundador').style.display='flex'"
+             style="font-size:10px; font-weight:600; letter-spacing:0.8px; background:#2E7D32; color:#fff; padding:4px 12px; border-radius:20px; border:none; cursor:pointer;">CATA</button>
+        </div>
       </div>
       <div class="event-card" style="--accent:#444441;">
         <div class="ev-time">19:30 → 21:15</div>
@@ -471,6 +473,31 @@
 </div>
 
 <footer style="margin-top:1.5rem;">Feria del Caballo · Jerez de la Frontera · Mayo 2026</footer>
+
+
+<!-- MODALES GLOBALES -->
+<div id="modal-cata" onclick="if(event.target===this)this.style.display='none'"
+     style="display:none; position:fixed; inset:0; width:100vw; height:100vh; background:rgba(0,0,0,0.9); z-index:9999; align-items:center; justify-content:center;">
+  <button onclick="document.getElementById('modal-cata').style.display='none'"
+          style="position:fixed; top:14px; right:16px; background:rgba(255,255,255,0.25); color:#fff; border:none; border-radius:50%; width:40px; height:40px; font-size:20px; cursor:pointer; z-index:10000; line-height:1;">✕</button>
+  <iframe src="https://www.jerez.es/feria" style="width:100vw; height:100vh; border:none;"></iframe>
+</div>
+
+<div id="modal-cata-fundador" onclick="if(event.target===this)this.style.display='none'"
+     style="display:none; position:fixed; inset:0; width:100vw; height:100vh; background:rgba(0,0,0,0.9); z-index:9999; align-items:center; justify-content:center;">
+  <button onclick="document.getElementById('modal-cata-fundador').style.display='none'"
+          style="position:fixed; top:14px; right:16px; background:rgba(255,255,255,0.25); color:#fff; border:none; border-radius:50%; width:40px; height:40px; font-size:20px; cursor:pointer; z-index:10000; line-height:1;">✕</button>
+  <iframe src="https://www.jerez.es/feria" style="width:100vw; height:100vh; border:none;"></iframe>
+</div>
+
+<div id="modal-menu" onclick="if(event.target===this)this.style.display='none'"
+     style="display:none; position:fixed; inset:0; width:100vw; height:100vh; background:rgba(0,0,0,0.9); z-index:9999; align-items:center; justify-content:center;">
+  <button onclick="document.getElementById('modal-menu').style.display='none'"
+          style="position:fixed; top:14px; right:16px; background:rgba(255,255,255,0.25); color:#fff; border:none; border-radius:50%; width:40px; height:40px; font-size:20px; cursor:pointer; z-index:10000; line-height:1;">✕</button>
+  <img src="https://raw.githubusercontent.com/webdedisfrutar/WEB/main/MENU%20EL%20PASAJE.JPG"
+       alt="Menú El Pasaje"
+       style="width:100vw; height:100vh; object-fit:contain; display:block;">
+</div>
 
 </body>
 </html>
