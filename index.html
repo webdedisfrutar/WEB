@@ -368,7 +368,23 @@
         <div class="ev-time">14:00</div>
         <div class="ev-name">🎶 Tabanco El Pasaje</div>
         <div class="ev-note">Reserva confirmada · 10 personas</div>
-        <span class="ev-tag tag-comida">Comida</span>
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-top:6px;">
+          <span class="ev-tag tag-comida">Comida</span>
+          <button onclick="document.getElementById('modal-menu').style.display='flex'"
+             style="font-size:10px; font-weight:600; letter-spacing:0.8px; background:#1A5FA8; color:#fff; padding:4px 12px; border-radius:20px; border:none; cursor:pointer;">MENÚ</button>
+        </div>
+      </div>
+
+      <!-- MODAL MENÚ -->
+      <div id="modal-menu" onclick="if(event.target===this)this.style.display='none'"
+           style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center; padding:20px;">
+        <div style="position:relative; max-width:90vw; max-height:90vh; background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,0.4);">
+          <button onclick="document.getElementById('modal-menu').style.display='none'"
+                  style="position:absolute; top:10px; right:12px; background:rgba(0,0,0,0.5); color:#fff; border:none; border-radius:50%; width:30px; height:30px; font-size:16px; cursor:pointer; z-index:10; line-height:1;">✕</button>
+          <img src="https://raw.githubusercontent.com/webdedisfrutar/WEB/main/MENU%20EL%20PASAJE.JPG"
+               alt="Menú El Pasaje"
+               style="display:block; max-width:90vw; max-height:88vh; object-fit:contain;">
+        </div>
       </div>
       <div class="event-card" style="--accent:#993C1D;">
         <div class="ev-time">19:00</div>
@@ -376,7 +392,7 @@
         <div class="ev-note">Morante de la Puebla, Sebastián Castella y Roca Rey · 5 entradas · Tendido Filas 8-13, Sombra</div>
         <div style="display:flex; align-items:center; justify-content:space-between; margin-top:6px;">
           <span class="ev-tag tag-fiesta">Fiesta</span>
-          <a href="" target="_blank"
+          <a href="https://www.jerez.es/feria" target="_blank"
              style="font-size:10px; font-weight:600; letter-spacing:0.8px; background:#C0392B; color:#fff; padding:4px 12px; border-radius:20px; text-decoration:none;">ENTRADAS</a>
         </div>
       </div>
@@ -386,7 +402,7 @@
         <div class="ev-note">Fundación Real Escuela Andaluza del Arte Ecuestre · Jerez de la Frontera</div>
         <div style="display:flex; align-items:center; justify-content:space-between; margin-top:6px;">
           <span class="ev-tag tag-visita">Visita</span>
-          <a href="" target="_blank"
+          <a href="https://www.jerez.es/feria" target="_blank"
              style="font-size:10px; font-weight:600; letter-spacing:0.8px; background:#C0392B; color:#fff; padding:4px 12px; border-radius:20px; text-decoration:none;">ENTRADAS</a>
         </div>
       </div>
