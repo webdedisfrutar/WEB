@@ -376,13 +376,6 @@
     overlay.style.transition = 'opacity 0.8s ease';
     overlay.style.opacity = '0';
     setTimeout(() => { overlay.style.display = 'none'; }, 800);
-    // Activa música con sonido
-    const music = document.getElementById('bg-music');
-    if (music) {
-      music.muted = false;
-      const btn = document.getElementById('btn-mute');
-      if (btn) { btn.innerHTML = '🔊'; btn.style.background = 'var(--amber)'; }
-    }
   }
 
   document.getElementById('welcome-overlay').addEventListener('click', closeOverlay);
@@ -554,52 +547,47 @@
 
 <footer style="margin-top:1.5rem;">Feria del Caballo · Jerez de la Frontera · Mayo 2026</footer>
 
-<!-- AUDIO AUTOPLAY -->
-<audio id="bg-music" autoplay loop muted>
-  <source src="https://raw.githubusercontent.com/webdedisfrutar/WEB/main/Abril.mp3" type="audio/mpeg">
-</audio>
+<!-- SPOTIFY MINI PLAYER -->
+<div id="spotify-player"
+     style="position:fixed; bottom:16px; right:16px; z-index:9998;
+            border-radius:12px; overflow:hidden;
+            box-shadow:0 4px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;">
+  <iframe id="spotify-iframe"
+          src="https://open.spotify.com/embed/playlist/4J7sAvAPcpCCNl661iBwFp?utm_source=generator&theme=0"
+          width="80" height="80" frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+          style="display:block; border-radius:12px;">
+  </iframe>
+</div>
 
-<!-- BOTÓN FLOTANTE MUTE -->
-<button id="btn-mute"
-        onclick="toggleMute()"
-        style="position:fixed; bottom:20px; right:20px; z-index:9998;
-               width:48px; height:48px; border-radius:50%; border:none;
-               background:var(--amber); color:#fff; font-size:20px;
-               cursor:pointer; box-shadow:0 4px 16px rgba(0,0,0,0.25);
-               display:flex; align-items:center; justify-content:center;
-               transition: background 0.2s;">
-  🔇
+<!-- BOTÓN EXPANDIR/CONTRAER SPOTIFY -->
+<button onclick="toggleSpotify()"
+        id="btn-spotify"
+        style="position:fixed; bottom:104px; right:22px; z-index:9999;
+               width:32px; height:32px; border-radius:50%; border:none;
+               background:var(--amber); color:#fff; font-size:13px;
+               cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.2);
+               display:flex; align-items:center; justify-content:center;">
+  ▾
 </button>
 
 <script>
-  const music = document.getElementById('bg-music');
-  const btn = document.getElementById('btn-mute');
-
-  music.volume = 0.6;
-
-  // Autoplay muted (los navegadores lo permiten)
-  // Al primer toque del usuario, activa el sonido
-  function enableSound() {
-    music.muted = false;
-    btn.innerHTML = '🔊';
-    btn.style.background = 'var(--amber)';
-    document.removeEventListener('click', enableSound);
-    document.removeEventListener('touchstart', enableSound);
-  }
-
-  // Sound activated by welcome overlay
-  // document.addEventListener('click', enableSound);
-  // document.addEventListener('touchstart', enableSound);
-
-  function toggleMute() {
-    if (music.muted) {
-      music.muted = false;
-      btn.innerHTML = '🔊';
-      btn.style.background = 'var(--amber)';
+  let expanded = false;
+  function toggleSpotify() {
+    const iframe = document.getElementById('spotify-iframe');
+    const btn = document.getElementById('btn-spotify');
+    if (expanded) {
+      iframe.style.width = '80px';
+      iframe.style.height = '80px';
+      btn.innerHTML = '▾';
+      expanded = false;
     } else {
-      music.muted = true;
-      btn.innerHTML = '🔇';
-      btn.style.background = '#888';
+      iframe.style.width = '300px';
+      iframe.style.height = '380px';
+      btn.innerHTML = '▴';
+      expanded = true;
     }
   }
 </script>
@@ -607,7 +595,7 @@
 
 <!-- MODALES GLOBALES -->
 <div id="modal-cata" onclick="if(event.target===this)this.style.display='none'"
-     style="display:none; position:fixed; inset:0; width:100vw; height:100vh; background:rgba(0,0,0,0.92); z-index:9999; align-items:center; justify-content:center;">
+     style="display:none; position:fixed; inset:0; width:100vw; height:100vh; background: linear-gradient(160deg, #1a0f00 0%, #3a1a00 40%, #1a0a0a 100%); z-index:9999; align-items:center; justify-content:center;">
   <button onclick="document.getElementById('modal-cata').style.display='none'"
           style="position:fixed; top:14px; right:16px; background:rgba(255,255,255,0.25); color:#fff; border:none; border-radius:50%; width:40px; height:40px; font-size:20px; cursor:pointer; z-index:10000; line-height:1;">✕</button>
   <img src="https://raw.githubusercontent.com/webdedisfrutar/WEB/main/tiza.JPG"
@@ -616,7 +604,7 @@
 </div>
 
 <div id="modal-cata-fundador" onclick="if(event.target===this)this.style.display='none'"
-     style="display:none; position:fixed; inset:0; width:100vw; height:100vh; background:rgba(0,0,0,0.92); z-index:9999; align-items:center; justify-content:center;">
+     style="display:none; position:fixed; inset:0; width:100vw; height:100vh; background: linear-gradient(160deg, #1a0f00 0%, #3a1a00 40%, #1a0a0a 100%); z-index:9999; align-items:center; justify-content:center;">
   <button onclick="document.getElementById('modal-cata-fundador').style.display='none'"
           style="position:fixed; top:14px; right:16px; background:rgba(255,255,255,0.25); color:#fff; border:none; border-radius:50%; width:40px; height:40px; font-size:20px; cursor:pointer; z-index:10000; line-height:1;">✕</button>
   <img src="https://raw.githubusercontent.com/webdedisfrutar/WEB/main/fundador.JPG"
@@ -625,7 +613,7 @@
 </div>
 
 <div id="modal-menu" onclick="if(event.target===this)this.style.display='none'"
-     style="display:none; position:fixed; inset:0; width:100vw; height:100vh; background:rgba(0,0,0,0.9); z-index:9999; align-items:center; justify-content:center;">
+     style="display:none; position:fixed; inset:0; width:100vw; height:100vh; background: linear-gradient(160deg, #1a0f00 0%, #3a1a00 40%, #1a0a0a 100%); z-index:9999; align-items:center; justify-content:center;">
   <button onclick="document.getElementById('modal-menu').style.display='none'"
           style="position:fixed; top:14px; right:16px; background:rgba(255,255,255,0.25); color:#fff; border:none; border-radius:50%; width:40px; height:40px; font-size:20px; cursor:pointer; z-index:10000; line-height:1;">✕</button>
   <img src="https://raw.githubusercontent.com/webdedisfrutar/WEB/main/MENU%20EL%20PASAJE.JPG"
