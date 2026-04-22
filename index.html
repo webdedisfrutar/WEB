@@ -475,7 +475,7 @@
 <footer style="margin-top:1.5rem;">Feria del Caballo · Jerez de la Frontera · Mayo 2026</footer>
 
 <!-- AUDIO AUTOPLAY -->
-<audio id="bg-music" autoplay loop>
+<audio id="bg-music" autoplay loop muted>
   <source src="https://raw.githubusercontent.com/webdedisfrutar/WEB/main/Abril.mp3" type="audio/mpeg">
 </audio>
 
@@ -488,25 +488,27 @@
                cursor:pointer; box-shadow:0 4px 16px rgba(0,0,0,0.25);
                display:flex; align-items:center; justify-content:center;
                transition: background 0.2s;">
-  🔊
+  🔇
 </button>
 
 <script>
   const music = document.getElementById('bg-music');
   const btn = document.getElementById('btn-mute');
 
-  // Intenta autoplay al cargar
-  window.addEventListener('load', () => {
-    music.volume = 0.5;
-    music.play().catch(() => {
-      // Si el navegador bloquea, espera interacción
-      btn.innerHTML = '▶';
-      document.addEventListener('click', () => {
-        music.play();
-        btn.innerHTML = '🔊';
-      }, { once: true });
-    });
-  });
+  music.volume = 0.6;
+
+  // Autoplay muted (los navegadores lo permiten)
+  // Al primer toque del usuario, activa el sonido
+  function enableSound() {
+    music.muted = false;
+    btn.innerHTML = '🔊';
+    btn.style.background = 'var(--amber)';
+    document.removeEventListener('click', enableSound);
+    document.removeEventListener('touchstart', enableSound);
+  }
+
+  document.addEventListener('click', enableSound);
+  document.addEventListener('touchstart', enableSound);
 
   function toggleMute() {
     if (music.muted) {
