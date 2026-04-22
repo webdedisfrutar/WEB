@@ -474,20 +474,71 @@
 
 <footer style="margin-top:1.5rem;">Feria del Caballo · Jerez de la Frontera · Mayo 2026</footer>
 
+<!-- AUDIO AUTOPLAY -->
+<audio id="bg-music" autoplay loop>
+  <source src="https://raw.githubusercontent.com/webdedisfrutar/WEB/main/Abril.mp3" type="audio/mpeg">
+</audio>
+
+<!-- BOTÓN FLOTANTE MUTE -->
+<button id="btn-mute"
+        onclick="toggleMute()"
+        style="position:fixed; bottom:20px; right:20px; z-index:9998;
+               width:48px; height:48px; border-radius:50%; border:none;
+               background:var(--amber); color:#fff; font-size:20px;
+               cursor:pointer; box-shadow:0 4px 16px rgba(0,0,0,0.25);
+               display:flex; align-items:center; justify-content:center;
+               transition: background 0.2s;">
+  🔊
+</button>
+
+<script>
+  const music = document.getElementById('bg-music');
+  const btn = document.getElementById('btn-mute');
+
+  // Intenta autoplay al cargar
+  window.addEventListener('load', () => {
+    music.volume = 0.5;
+    music.play().catch(() => {
+      // Si el navegador bloquea, espera interacción
+      btn.innerHTML = '▶';
+      document.addEventListener('click', () => {
+        music.play();
+        btn.innerHTML = '🔊';
+      }, { once: true });
+    });
+  });
+
+  function toggleMute() {
+    if (music.muted) {
+      music.muted = false;
+      btn.innerHTML = '🔊';
+      btn.style.background = 'var(--amber)';
+    } else {
+      music.muted = true;
+      btn.innerHTML = '🔇';
+      btn.style.background = '#888';
+    }
+  }
+</script>
+
 
 <!-- MODALES GLOBALES -->
 <div id="modal-cata" onclick="if(event.target===this)this.style.display='none'"
-     style="display:none; position:fixed; inset:0; width:100vw; height:100vh; background:rgba(0,0,0,0.9); z-index:9999; align-items:center; justify-content:center;">
+     style="display:none; position:fixed; inset:0; width:100vw; height:100vh; background:rgba(0,0,0,0.92); z-index:9999; align-items:center; justify-content:center;">
   <button onclick="document.getElementById('modal-cata').style.display='none'"
           style="position:fixed; top:14px; right:16px; background:rgba(255,255,255,0.25); color:#fff; border:none; border-radius:50%; width:40px; height:40px; font-size:20px; cursor:pointer; z-index:10000; line-height:1;">✕</button>
-  <iframe src="https://www.jerez.es/feria" style="width:100vw; height:100vh; border:none;"></iframe>
+  <img src="https://raw.githubusercontent.com/webdedisfrutar/WEB/main/tiza.JPG"
+       alt="El Lenguaje de la Tiza"
+       style="max-width:100vw; max-height:100vh; object-fit:contain; display:block;">
 </div>
 
 <div id="modal-cata-fundador" onclick="if(event.target===this)this.style.display='none'"
-     style="display:none; position:fixed; inset:0; width:100vw; height:100vh; background:rgba(0,0,0,0.9); z-index:9999; align-items:center; justify-content:center;">
+     style="display:none; position:fixed; inset:0; width:100vw; height:100vh; background:rgba(0,0,0,0.92); z-index:9999; align-items:center; justify-content:center;">
   <button onclick="document.getElementById('modal-cata-fundador').style.display='none'"
           style="position:fixed; top:14px; right:16px; background:rgba(255,255,255,0.25); color:#fff; border:none; border-radius:50%; width:40px; height:40px; font-size:20px; cursor:pointer; z-index:10000; line-height:1;">✕</button>
-  <iframe src="https://www.jerez.es/feria" style="width:100vw; height:100vh; border:none;"></iframe>
+  <img src="https://raw.githubusercontent.com/webdedisfrutar/WEB/main/fundador.JPG"
+       alt="Bodegas Fundador"
+       style="max-width:100vw; max-height:100vh; object-fit:contain; display:block;">
 </div>
 
 <div id="modal-menu" onclick="if(event.target===this)this.style.display='none'"
