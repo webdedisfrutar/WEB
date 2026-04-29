@@ -370,35 +370,176 @@
 </div>
 
 <script>
-  // Contador regresivo
-  const feriaDate = new Date('2026-05-14T09:15:00');
+  const feriaDate  = new Date('2026-05-14T09:15:00');
+  const vueltaDate = new Date('2026-05-16T19:30:00');
+  const pad = n => String(n).padStart(2,'0');
+  let fireworksFired = false;
+
+  // ── FUEGOS ARTIFICIALES ──
+  function launchFireworks() {
+    if (fireworksFired) return;
+    fireworksFired = true;
+    const canvas = document.getElementById('fireworks-canvas');
+    if (!canvas) return;
+    canvas.style.display = 'block';
+    const ctx = canvas.getContext('2d');
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = [];
+    const colors = ['#BA7517','#FAC775','#C0392B','#fff','#FFD700','#FF6B6B','#FFA500'];
+
+    function createBurst(x, y) {
+      for (let i = 0; i < 120; i++) {
+        const angle = (Math.PI * 2 / 120) * i;
+        const speed = 2 + Math.random() * 5;
+        particles.push({
+          x, y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          alpha: 1,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          size: 2 + Math.random() * 3
+        });
+      }
+    }
+
+    // Lanzar varias explosiones
+    const bursts = [
+      [window.innerWidth*0.2, window.innerHeight*0.3],
+      [window.innerWidth*0.5, window.innerHeight*0.2],
+      [window.innerWidth*0.8, window.innerHeight*0.3],
+      [window.innerWidth*0.35,window.innerHeight*0.5],
+      [window.innerWidth*0.65,window.innerHeight*0.4],
+    ];
+    let bi = 0;
+    const burstInterval = setInterval(() => {
+      if (bi < bursts.length) { createBurst(bursts[bi][0], bursts[bi][1]); bi++; }
+      else clearInterval(burstInterval);
+    }, 250);
+
+    function animateFireworks() {
+      ctx.fillStyle = 'rgba(0,0,0,0.15)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p, i) => {
+        p.x += p.vx; p.y += p.vy;
+        p.vy += 0.08;
+        p.alpha -= 0.012;
+        ctx.globalAlpha = Math.max(p.alpha, 0);
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+        ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+      for (let i = particles.length-1; i >= 0; i--) {
+        if (particles[i].alpha <= 0) particles.splice(i, 1);
+      }
+      if (particles.length > 0 || bi < bursts.length) {
+        requestAnimationFrame(animateFireworks);
+      } else {
+        setTimeout(() => { canvas.style.display = 'none'; }, 500);
+      }
+    }
+    animateFireworks();
+
+    // Mostrar mensaje ¡A BAILAR!
+    setTimeout(() => {
+      document.getElementById('bailar-msg').style.display = 'flex';
+      setTimeout(() => {
+        document.getElementById('bailar-msg').style.opacity = '0';
+        setTimeout(() => { document.getElementById('bailar-msg').style.display = 'none'; }, 1000);
+      }, 3500);
+    }, 800);
+  }
+
+  // ── CONTADOR ──
+  function setT(id, val) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = val;
+  }
 
   function updateCountdown() {
-    const now = new Date();
+    const now  = new Date();
     const diff = feriaDate - now;
-    if (diff <= 0) {
-      document.getElementById('ov-days').textContent = '¡YA!';
-      if (document.getElementById('page-countdown')) document.getElementById('page-countdown').style.display='none';
-      return;
+
+    if (diff > 0) {
+      // Cuenta atrás normal
+      const days  = Math.floor(diff / (1000*60*60*24));
+      const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+      const mins  = Math.floor((diff % (1000*60*60)) / (1000*60));
+      const secs  = Math.floor((diff % (1000*60)) / 1000);
+      if (document.getElementById('pc-days'))  document.getElementById('pc-days').textContent  = pad(days);
+      if (document.getElementById('pc-hours')) document.getElementById('pc-hours').textContent = pad(hours);
+      if (document.getElementById('pc-mins'))  document.getElementById('pc-mins').textContent  = pad(mins);
+      if (document.getElementById('pc-secs'))  document.getElementById('pc-secs').textContent  = pad(secs);
+      setT('pc-label-days', 'días');
+
+      setT('pc-label-hours', 'horas');
+
+      setT('pc-label-mins', 'minutos');
+
+      setT('pc-label-secs', 'segundos');
+
+      setT('pc-title1', 'OJO GEMMA !!!!');
+
+      setT('pc-title2', '🎡 Para nuestra llegada a Jerez 🎡');
+
+      setT('pc-title3', 'faltan...');
+
+      setT('pc-footer', '✈ BCN → SVQ · Jueves 14 Mayo · 09:15h');
+
+
+    } else {
+      // ¡LLEGAMOS! — fuegos artificiales una sola vez
+      launchFireworks();
+
+      const diff2 = vueltaDate - now;
+      if (diff2 > 0) {
+        // Ahora cuenta cuánto lleváis en la feria
+        const hours = Math.floor(diff2 > 0 ? (now - feriaDate) / (1000*60*60) : 0);
+        const mins  = Math.floor(((now - feriaDate) % (1000*60*60)) / (1000*60));
+        const secs  = Math.floor(((now - feriaDate) % (1000*60)) / 1000);
+        if (document.getElementById('pc-days'))  { document.getElementById('pc-days').textContent = '🎉'; document.getElementById('pc-label-days').textContent = ''; }
+        if (document.getElementById('pc-hours')) document.getElementById('pc-hours').textContent = pad(hours);
+        if (document.getElementById('pc-mins'))  document.getElementById('pc-mins').textContent  = pad(mins);
+        if (document.getElementById('pc-secs'))  document.getElementById('pc-secs').textContent  = pad(secs);
+        setT('pc-label-hours', 'horas');
+
+        setT('pc-label-mins', 'minutos');
+
+        setT('pc-label-secs', 'de feria');
+
+        setT('pc-title1', '¡¡ ESTAMOS EN JEREZ !!');
+
+        setT('pc-title2', '🎡 Lleváis en la Feria 🎡');
+
+        setT('pc-title3', '');
+
+        setT('pc-footer', '✈ Vuelo de vuelta · Sábado 16 Mayo · 19:30h');
+
+      } else {
+        // Ya estamos de vuelta
+        setT('pc-title1', '¡¡ QUÉ GRANDE HA SIDO !!');
+
+        setT('pc-title2', '🎡 Jerez 2026 · Para siempre en el recuerdo 🎡');
+
+        setT('pc-title3', '');
+
+        if (document.getElementById('pc-days'))  document.getElementById('pc-days').textContent  = '🥂';
+        if (document.getElementById('pc-hours')) document.getElementById('pc-hours').textContent = '🐴';
+        if (document.getElementById('pc-mins'))  document.getElementById('pc-mins').textContent  = '💃';
+        if (document.getElementById('pc-secs'))  document.getElementById('pc-secs').textContent  = '🕺';
+        setT('pc-label-days', '');
+
+        setT('pc-label-hours', '');
+
+        setT('pc-label-mins', '');
+
+        setT('pc-label-secs', '');
+
+      }
     }
-    const days  = Math.floor(diff / (1000*60*60*24));
-    const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-    const mins  = Math.floor((diff % (1000*60*60)) / (1000*60));
-    const secs  = Math.floor((diff % (1000*60)) / 1000);
-
-    const pad = n => String(n).padStart(2,'0');
-
-    // Overlay
-    if (document.getElementById('ov-days'))  document.getElementById('ov-days').textContent  = pad(days);
-    if (document.getElementById('ov-hours')) document.getElementById('ov-hours').textContent = pad(hours);
-    if (document.getElementById('ov-mins'))  document.getElementById('ov-mins').textContent  = pad(mins);
-    if (document.getElementById('ov-secs'))  document.getElementById('ov-secs').textContent  = pad(secs);
-
-    // Banner página
-    if (document.getElementById('pc-days'))  document.getElementById('pc-days').textContent  = pad(days);
-    if (document.getElementById('pc-hours')) document.getElementById('pc-hours').textContent = pad(hours);
-    if (document.getElementById('pc-mins'))  document.getElementById('pc-mins').textContent  = pad(mins);
-    if (document.getElementById('pc-secs'))  document.getElementById('pc-secs').textContent  = pad(secs);
   }
   updateCountdown();
   setInterval(updateCountdown, 1000);
@@ -406,6 +547,7 @@
   function enterSite(e) {
     e.stopPropagation();
     closeOverlay();
+
   }
 
   function closeOverlay() {
@@ -445,40 +587,32 @@
   <!-- contenido -->
   <div style="position:relative; z-index:1; padding:24px 28px; border:1px solid rgba(186,117,23,0.2); border-radius:16px;">
     <div style="text-align:center; margin-bottom:16px;">
-      <div style="font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:#fff; margin-bottom:6px; letter-spacing:1px;">
-        OJO GEMMA !!!!
-      </div>
-      <div style="font-size:11px; font-weight:500; letter-spacing:3px; color:rgba(255,255,255,0.85); text-transform:uppercase; font-family:'DM Sans',sans-serif;">
-        🎡 Para nuestra llegada a Jerez 🎡
-      </div>
-      <div style="font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:#FAC775; margin-top:6px; letter-spacing:1px;">
-        faltan...
-      </div>
+      <div id="pc-title1" style="font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:#fff; margin-bottom:6px; letter-spacing:1px;">OJO GEMMA !!!!</div>
+      <div id="pc-title2" style="font-size:11px; font-weight:500; letter-spacing:3px; color:rgba(255,255,255,0.85); text-transform:uppercase; font-family:'DM Sans',sans-serif;">🎡 Para nuestra llegada a Jerez 🎡</div>
+      <div id="pc-title3" style="font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:#FAC775; margin-top:6px; letter-spacing:1px;">faltan...</div>
     </div>
     <div style="display:flex; gap:0; align-items:center; justify-content:center; flex-wrap:wrap;">
       <div style="text-align:center; padding:0 16px;">
         <div id="pc-days" style="font-family:'Playfair Display',serif; font-size:52px; font-weight:700; color:#fff; line-height:1;">--</div>
-        <div style="font-size:10px; letter-spacing:2.5px; color:rgba(255,255,255,0.6); text-transform:uppercase; margin-top:4px;">días</div>
+        <div id="pc-label-days" style="font-size:10px; letter-spacing:2.5px; color:rgba(255,255,255,0.6); text-transform:uppercase; margin-top:4px;">días</div>
       </div>
       <div style="color:rgba(186,117,23,0.6); font-size:40px; margin-bottom:16px; font-weight:300;">:</div>
       <div style="text-align:center; padding:0 16px;">
         <div id="pc-hours" style="font-family:'Playfair Display',serif; font-size:52px; font-weight:700; color:#fff; line-height:1;">--</div>
-        <div style="font-size:10px; letter-spacing:2.5px; color:rgba(255,255,255,0.6); text-transform:uppercase; margin-top:4px;">horas</div>
+        <div id="pc-label-hours" style="font-size:10px; letter-spacing:2.5px; color:rgba(255,255,255,0.6); text-transform:uppercase; margin-top:4px;">horas</div>
       </div>
       <div style="color:rgba(186,117,23,0.6); font-size:40px; margin-bottom:16px; font-weight:300;">:</div>
       <div style="text-align:center; padding:0 16px;">
         <div id="pc-mins" style="font-family:'Playfair Display',serif; font-size:52px; font-weight:700; color:#fff; line-height:1;">--</div>
-        <div style="font-size:10px; letter-spacing:2.5px; color:rgba(255,255,255,0.6); text-transform:uppercase; margin-top:4px;">minutos</div>
+        <div id="pc-label-mins" style="font-size:10px; letter-spacing:2.5px; color:rgba(255,255,255,0.6); text-transform:uppercase; margin-top:4px;">minutos</div>
       </div>
       <div style="color:rgba(186,117,23,0.6); font-size:40px; margin-bottom:16px; font-weight:300;">:</div>
       <div style="text-align:center; padding:0 16px;">
         <div id="pc-secs" style="font-family:'Playfair Display',serif; font-size:52px; font-weight:700; color:#FAC775; line-height:1;">--</div>
-        <div style="font-size:10px; letter-spacing:2.5px; color:rgba(255,255,255,0.6); text-transform:uppercase; margin-top:4px;">segundos</div>
+        <div id="pc-label-secs" style="font-size:10px; letter-spacing:2.5px; color:rgba(255,255,255,0.6); text-transform:uppercase; margin-top:4px;">segundos</div>
       </div>
     </div>
-    <div style="text-align:center; margin-top:14px; font-size:11px; color:rgba(255,255,255,0.35); font-family:'DM Sans',sans-serif; font-style:italic; letter-spacing:0.5px;">
-      ✈ BCN → SVQ · Jueves 14 Mayo · 09:15h
-    </div>
+    <div id="pc-footer" style="text-align:center; margin-top:14px; font-size:11px; color:rgba(255,255,255,0.35); font-family:'DM Sans',sans-serif; font-style:italic; letter-spacing:0.5px;">✈ BCN → SVQ · Jueves 14 Mayo · 09:15h</div>
   </div>
 </div>
 
@@ -947,5 +1081,20 @@
        style="width:100vw; height:100vh; object-fit:contain; display:block;">
 </div>
 
+
+<!-- CANVAS FUEGOS ARTIFICIALES -->
+<canvas id="fireworks-canvas" style="display:none; position:fixed; inset:0; z-index:99990; pointer-events:none;"></canvas>
+
+<!-- MENSAJE ¡A BAILAR! -->
+<div id="bailar-msg"
+     style="display:none; position:fixed; inset:0; z-index:99991; align-items:center; justify-content:center;
+            pointer-events:none; transition:opacity 1s;">
+  <div style="text-align:center; animation: fadeUp 0.5s ease both;">
+    <div style="font-family:'Playfair Display',serif; font-size:72px; font-weight:700;
+                color:#fff; text-shadow:0 0 40px rgba(186,117,23,0.9), 0 0 80px rgba(186,117,23,0.5);
+                letter-spacing:4px;">¡A BAILAR!</div>
+    <div style="font-size:48px; margin-top:10px;">💃🕺🎡🥂</div>
+  </div>
+</div>
 </body>
 </html>
