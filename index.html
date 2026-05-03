@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -62,6 +63,7 @@
 <body>
 
 <!-- OVERLAY BIENVENIDA -->
+
 <div id="welcome-overlay"
      style="position:fixed; inset:0; z-index:99999;
             background-image: linear-gradient(160deg, rgba(26,15,0,0.88) 0%, rgba(58,26,0,0.75) 40%, rgba(26,10,10,0.88) 100%), url('https://raw.githubusercontent.com/webdedisfrutar/WEB/main/feria.jpg');
@@ -187,6 +189,7 @@
 <div class="horse-bg"></div>
 
 <!-- SITE HEADER -->
+
 <header style="position:relative; z-index:10; display:flex; align-items:center; justify-content:space-between; max-width:900px; margin:0 auto 2.5rem; padding:0 4px; animation: fadeUp 0.4s ease both;">
   <div style="display:flex; align-items:center; gap:14px;">
     <img src="https://raw.githubusercontent.com/webdedisfrutar/WEB/main/IMG_2528.jpg" style="width:52px; height:52px; border-radius:50%; object-fit:cover; border:2px solid var(--amber); flex-shrink:0;" alt="Disfrutar">
@@ -208,6 +211,7 @@
 </header>
 
 <!-- CONTADOR -->
+
 <div id="page-countdown" style="max-width:900px; margin:0 auto 2rem; position:relative; z-index:2; border-radius:16px; overflow:hidden;">
   <div style="position:absolute; inset:0; background-image:url('https://raw.githubusercontent.com/webdedisfrutar/WEB/main/caballos%202.JPG'); background-size:cover; background-position:center; filter:blur(6px) brightness(0.35); transform:scale(1.06); z-index:0;"></div>
   <div style="position:relative; z-index:1; padding:16px 28px; border:1px solid rgba(186,117,23,0.2); border-radius:16px;">
@@ -234,9 +238,11 @@
 </div>
 
 <!-- GRID DE DÍAS -->
+
 <div class="days-grid">
 
   <!-- DÍA 1: JUEVES -->
+
   <div class="day-col">
     <div class="day-header d1">
       <div class="weekday">Jueves</div><div class="date-num">14</div><div class="month">Mayo 2026</div><div class="sublabel">Día 1 · Llegada</div>
@@ -279,6 +285,7 @@
   </div>
 
   <!-- DÍA 2: VIERNES -->
+
   <div class="day-col">
     <div class="day-header d2">
       <div class="weekday">Viernes</div><div class="date-num">15</div><div class="month">Mayo 2026</div><div class="sublabel">Día 2 · FERIA</div>
@@ -337,6 +344,7 @@
   </div>
 
   <!-- DÍA 3: SÁBADO -->
+
   <div class="day-col">
     <div class="day-header d3">
       <div class="weekday">Sábado</div><div class="date-num">16</div><div class="month">Mayo 2026</div><div class="sublabel">Día 3 · Vuelta</div>
@@ -368,11 +376,13 @@
 </div>
 
 <!-- SEPARADOR FLORES -->
+
 <div style="text-align:center; max-width:900px; margin:2rem auto 0; position:relative; z-index:2;">
   <img src="https://raw.githubusercontent.com/webdedisfrutar/WEB/main/flores.png" style="width:320px; opacity:0.85;">
 </div>
 
 <!-- LEYENDA -->
+
 <div class="legend" style="border-top:none; margin-top:1rem;">
   <div class="leg-item"><div class="leg-dot" style="background:#639922"></div> Comida / Cena</div>
   <div class="leg-item"><div class="leg-dot" style="background:#BA7517"></div> Fiesta / Caseta</div>
@@ -382,43 +392,98 @@
 </div>
 
 <!-- 1. GASTOS -->
+
 <div style="text-align:center; margin:2rem auto 0; max-width:900px; position:relative; z-index:2;">
   <a href="https://tricount.com/tjNjvvpPmVTPaeGsGy" style="display:inline-block; background:#BA7517; color:#fff; font-family:'Playfair Display',serif; font-size:20px; font-weight:700; letter-spacing:1px; padding:18px 48px; border-radius:12px; text-decoration:none;">💰 GASTOS DE VIAJE</a>
   <p style="font-size:12px; color:var(--text-muted); margin-top:10px; font-style:italic;">⚠️ Para acceder hay que instalar la app <strong>Tricount</strong> previamente</p>
 </div>
 
 <!-- 2. TIEMPO -->
+
 <div style="max-width:900px; margin:1.5rem auto 0; position:relative; z-index:2;">
   <div style="background:#fff; border-radius:14px; border:0.5px solid var(--border); padding:16px 20px; box-shadow:0 2px 12px rgba(0,0,0,0.05);">
     <div style="font-size:9px; font-weight:500; letter-spacing:2px; color:var(--amber); text-transform:uppercase; margin-bottom:12px;">🌤️ Previsión del tiempo · Jerez de la Frontera</div>
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px; text-align:center;">
+    <div id="weather-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px; text-align:center;">
       <div style="background:#fdf8f0; border-radius:10px; padding:12px 8px; border:1px solid rgba(186,117,23,0.1);">
         <div style="font-size:9px; font-weight:600; letter-spacing:1.5px; color:var(--amber); text-transform:uppercase;">JUE 14</div>
-        <div style="font-size:32px; margin:6px 0;">☀️</div>
-        <div style="font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--text);">26°</div>
-        <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">Despejado</div>
-        <div style="font-size:10px; color:var(--text-muted);">💨 15 km/h</div>
+        <div id="w-icon-0" style="font-size:32px; margin:6px 0;">⏳</div>
+        <div id="w-temp-0" style="font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--text);">--°</div>
+        <div id="w-desc-0" style="font-size:10px; color:var(--text-muted); margin-top:2px;">Cargando...</div>
+        <div id="w-wind-0" style="font-size:10px; color:var(--text-muted);">💨 --</div>
       </div>
       <div style="background:#fdf8f0; border-radius:10px; padding:12px 8px; border:1px solid rgba(186,117,23,0.15);">
         <div style="font-size:9px; font-weight:600; letter-spacing:1.5px; color:var(--coral); text-transform:uppercase;">VIE 15</div>
-        <div style="font-size:32px; margin:6px 0;">🌤️</div>
-        <div style="font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--text);">28°</div>
-        <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">Poco nublado</div>
-        <div style="font-size:10px; color:var(--text-muted);">💨 12 km/h</div>
+        <div id="w-icon-1" style="font-size:32px; margin:6px 0;">⏳</div>
+        <div id="w-temp-1" style="font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--text);">--°</div>
+        <div id="w-desc-1" style="font-size:10px; color:var(--text-muted); margin-top:2px;">Cargando...</div>
+        <div id="w-wind-1" style="font-size:10px; color:var(--text-muted);">💨 --</div>
       </div>
       <div style="background:#fdf8f0; border-radius:10px; padding:12px 8px; border:1px solid rgba(59,109,17,0.1);">
         <div style="font-size:9px; font-weight:600; letter-spacing:1.5px; color:var(--green); text-transform:uppercase;">SÁB 16</div>
-        <div style="font-size:32px; margin:6px 0;">⛅</div>
-        <div style="font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--text);">24°</div>
-        <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">Intervalos nubosos</div>
-        <div style="font-size:10px; color:var(--text-muted);">💨 18 km/h</div>
+        <div id="w-icon-2" style="font-size:32px; margin:6px 0;">⏳</div>
+        <div id="w-temp-2" style="font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--text);">--°</div>
+        <div id="w-desc-2" style="font-size:10px; color:var(--text-muted); margin-top:2px;">Cargando...</div>
+        <div id="w-wind-2" style="font-size:10px; color:var(--text-muted);">💨 --</div>
       </div>
     </div>
-    <div style="font-size:9px; color:rgba(0,0,0,0.25); text-align:center; margin-top:10px; font-style:italic;">* Previsión orientativa · Actualiza antes del viaje</div>
+    <div id="weather-footer" style="font-size:9px; color:rgba(0,0,0,0.25); text-align:center; margin-top:10px; font-style:italic;">Cargando datos en tiempo real...</div>
   </div>
 </div>
 
+<script>
+(function() {
+  const WMO = {
+    0:'Despejado',1:'Casi despejado',2:'Parcialmente nublado',3:'Nublado',
+    45:'Niebla',48:'Niebla',51:'Llovizna',53:'Llovizna',55:'Llovizna',
+    61:'Lluvia leve',63:'Lluvia',65:'Lluvia fuerte',
+    71:'Nieve leve',73:'Nieve',75:'Nieve fuerte',
+    80:'Chubascos',81:'Chubascos',82:'Chubascos fuertes',
+    95:'Tormenta',96:'Tormenta con granizo',99:'Tormenta con granizo'
+  };
+  const ICON = {
+    0:'☀️',1:'🌤️',2:'⛅',3:'☁️',
+    45:'🌫️',48:'🌫️',51:'🌦️',53:'🌦️',55:'🌧️',
+    61:'🌦️',63:'🌧️',65:'🌧️',
+    71:'🌨️',73:'❄️',75:'❄️',
+    80:'🌦️',81:'🌧️',82:'⛈️',
+    95:'⛈️',96:'⛈️',99:'⛈️'
+  };
+
+  fetch('https://api.open-meteo.com/v1/forecast?latitude=36.6850&longitude=-6.1261&daily=temperature_2m_max,weathercode,windspeed_10m_max&timezone=Europe%2FMadrid&start_date=2026-05-14&end_date=2026-05-16')
+    .then(r => r.json())
+    .then(data => {
+      const days = data.daily;
+      for (let i = 0; i < 3; i++) {
+        const code = days.weathercode[i];
+        const temp = Math.round(days.temperature_2m_max[i]);
+        const wind = Math.round(days.windspeed_10m_max[i]);
+        const el = id => document.getElementById(id);
+        if (el('w-icon-'+i))  el('w-icon-'+i).textContent  = ICON[code] || '🌡️';
+        if (el('w-temp-'+i))  el('w-temp-'+i).textContent  = temp + '°';
+        if (el('w-desc-'+i))  el('w-desc-'+i).textContent  = WMO[code]  || 'Variable';
+        if (el('w-wind-'+i))  el('w-wind-'+i).textContent  = '💨 ' + wind + ' km/h';
+      }
+      const updated = new Date().toLocaleTimeString('es-ES', {hour:'2-digit', minute:'2-digit'});
+      const footer = document.getElementById('weather-footer');
+      if (footer) footer.textContent = '* Datos en tiempo real · Actualizado a las ' + updated + ' · Open-Meteo.com';
+    })
+    .catch(() => {
+      const footer = document.getElementById('weather-footer');
+      if (footer) footer.textContent = '* No se pudo conectar · Datos orientativos';
+      const fallback = [{t:'26°',i:'☀️',d:'Despejado',w:'15'},{t:'28°',i:'🌤️',d:'Poco nublado',w:'12'},{t:'24°',i:'⛅',d:'Nuboso',w:'18'}];
+      fallback.forEach((f,i) => {
+        const el = id => document.getElementById(id);
+        if (el('w-icon-'+i)) el('w-icon-'+i).textContent = f.i;
+        if (el('w-temp-'+i)) el('w-temp-'+i).textContent = f.t;
+        if (el('w-desc-'+i)) el('w-desc-'+i).textContent = f.d;
+        if (el('w-wind-'+i)) el('w-wind-'+i).textContent = '💨 ' + f.w + ' km/h';
+      });
+    });
+})();
+</script>
+
 <!-- 3. HOTEL -->
+
 <div style="max-width:900px; margin:1.5rem auto 0; position:relative; z-index:2; background:var(--card-bg); border:0.5px solid var(--border); border-radius:12px; padding:14px 20px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
   <div style="display:flex; align-items:center; gap:12px;">
     <span style="font-size:22px;">🏨</span>
@@ -435,6 +500,7 @@
 </div>
 
 <!-- 4. SPOTIFY -->
+
 <div style="max-width:900px; margin:1.5rem auto 0; position:relative; z-index:2;">
   <a href="https://open.spotify.com/playlist/4J7sAvAPcpCCNl661iBwFp" target="_blank"
      style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px;
@@ -458,6 +524,7 @@
 </div>
 
 <!-- 5. MAPA -->
+
 <div style="max-width:900px; margin:1.5rem auto 0; position:relative; z-index:2;">
   <button onclick="document.getElementById('modal-mapa').style.display='flex'" style="width:100%; border:none; cursor:pointer; padding:0; background:transparent; display:block;">
     <div style="background:linear-gradient(135deg, #1B3A1B 0%, #2E6B2E 50%, #1B3A1B 100%); border-radius:14px; padding:18px 24px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; box-shadow:0 4px 20px rgba(0,80,0,0.25);" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
@@ -474,6 +541,7 @@
 </div>
 
 <!-- 6. BOTIQUÍN -->
+
 <div style="max-width:900px; margin:1.5rem auto 0; position:relative; z-index:2;">
   <button onclick="document.getElementById('modal-botiquin').style.display='flex'" style="width:100%; border:none; cursor:pointer; padding:0; background:transparent; display:block;">
     <div style="background:linear-gradient(135deg, #7B0000 0%, #C0392B 50%, #7B0000 100%); border-radius:14px; padding:18px 24px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; box-shadow:0 4px 20px rgba(192,57,43,0.3);" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
@@ -490,9 +558,11 @@
 </div>
 
 <!-- 7. FOOTER -->
+
 <footer style="margin-top:1.5rem;">Feria del Caballo · Jerez de la Frontera · Mayo 2026</footer>
 
 <!-- AUDIO -->
+
 <audio id="bg-music" autoplay loop muted>
   <source src="https://raw.githubusercontent.com/webdedisfrutar/WEB/main/Abril.mp3" type="audio/mpeg">
 </audio>
@@ -508,6 +578,7 @@
 </script>
 
 <!-- MODALES -->
+
 <div id="modal-cata" onclick="if(event.target===this)this.style.display='none'" style="display:none; position:fixed; inset:0; width:100vw; height:100vh; background:linear-gradient(160deg,#1a0f00 0%,#3a1a00 40%,#1a0a0a 100%); z-index:9999; align-items:center; justify-content:center;">
   <button onclick="document.getElementById('modal-cata').style.display='none'" style="position:fixed; top:14px; right:16px; background:rgba(255,255,255,0.25); color:#fff; border:none; border-radius:50%; width:40px; height:40px; font-size:20px; cursor:pointer; z-index:10000; line-height:1;">✕</button>
   <img src="https://raw.githubusercontent.com/webdedisfrutar/WEB/main/tiza.JPG" style="max-width:100vw; max-height:100vh; object-fit:contain; display:block;">
@@ -573,7 +644,9 @@
 </div>
 
 <!-- CANVAS Y MENSAJE -->
+
 <canvas id="fireworks-canvas" style="display:none; position:fixed; inset:0; z-index:99990; pointer-events:none;"></canvas>
+
 <div id="bailar-msg" style="display:none; position:fixed; inset:0; z-index:99991; align-items:center; justify-content:center; pointer-events:none; transition:opacity 1s;">
   <div style="text-align:center;">
     <div style="font-family:'Playfair Display',serif; font-size:72px; font-weight:700; color:#fff; text-shadow:0 0 40px rgba(186,117,23,0.9), 0 0 80px rgba(186,117,23,0.5); letter-spacing:4px;">¡A BAILAR!</div>
