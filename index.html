@@ -142,7 +142,7 @@
       if (document.getElementById("pc-mins"))  document.getElementById("pc-mins").textContent  = pad(mins);
       if (document.getElementById("pc-secs"))  document.getElementById("pc-secs").textContent  = pad(secs);
       setT("pc-label-days","días"); setT("pc-label-hours","horas"); setT("pc-label-mins","minutos"); setT("pc-label-secs","segundos");
-      setT("pc-title1","OJO GEMMA !!!!"); setT("pc-title2","🎡 Para nuestra llegada a Jerez 🎡"); setT("pc-title3","faltan...");
+      setT("pc-title1","🎡 Para nuestra llegada a Jerez"); setT("pc-title2","faltan..."); setT("pc-title3","🎡");
       setT("pc-footer","✈ BCN → SVQ · Jueves 14 Mayo · 09:15h");
     } else {
       launchFireworks();
@@ -217,9 +217,9 @@
   <div style="position:relative; z-index:1; padding:16px 28px; border:1px solid rgba(186,117,23,0.2); border-radius:16px;">
     <div style="text-align:center; margin-bottom:12px;">
       <div style="display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:8px;">
-        <span id="pc-title1" style="font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:#fff; letter-spacing:1px;">OJO GEMMA !!!!</span>
+        <span id="pc-title1" style="font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:#fff; letter-spacing:1px;">🎡 Para nuestra llegada a Jerez</span>
         <span style="color:rgba(186,117,23,0.5); font-size:18px;">·</span>
-        <span id="pc-title2" style="font-size:13px; font-weight:500; letter-spacing:2px; color:rgba(255,255,255,0.85); text-transform:uppercase; font-family:'DM Sans',sans-serif;">🎡 Para nuestra llegada a Jerez 🎡</span>
+        <span id="pc-title2" style="font-size:13px; font-weight:500; letter-spacing:2px; color:rgba(255,255,255,0.85); text-transform:uppercase; font-family:'DM Sans',sans-serif;">🎡</span>
         <span style="color:rgba(186,117,23,0.5); font-size:18px;">·</span>
         <span id="pc-title3" style="font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:#FAC775; letter-spacing:1px;">faltan...</span>
       </div>
@@ -603,18 +603,18 @@
 </script>
 
 <!-- 3. HOTEL -->
-<div style="max-width:900px; margin:1.5rem auto 0; position:relative; z-index:2; background:var(--card-bg); border:0.5px solid var(--border); border-radius:12px; padding:14px 20px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+<div style="max-width:900px; margin:1.5rem auto 0; position:relative; z-index:2; background: linear-gradient(135deg, #0D3B6E 0%, #1565C0 50%, #0D3B6E 100%); border:none; border-radius:12px; padding:14px 20px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; box-shadow:0 4px 20px rgba(21,101,192,0.3);">
   <div style="display:flex; align-items:center; gap:12px;">
     <span style="font-size:22px;">🏨</span>
     <div>
-      <div style="font-size:9px; font-weight:500; letter-spacing:1.5px; color:var(--amber); text-transform:uppercase; margin-bottom:3px;">Hotel</div>
-      <div style="font-family:'Playfair Display',serif; font-size:15px; font-weight:600; color:var(--text);">Barceló Jerez Montecastillo</div>
-      <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">Carretera Arcos km 6 · 11406 Jerez de la Frontera</div>
+      <div style="font-size:9px; font-weight:500; letter-spacing:1.5px; color:rgba(255,255,255,0.7); text-transform:uppercase; margin-bottom:3px;">Hotel</div>
+      <div style="font-family:'Playfair Display',serif; font-size:15px; font-weight:600; color:#fff;">Barceló Jerez Montecastillo</div>
+      <div style="font-size:12px; color:rgba(255,255,255,0.65); margin-top:2px;">Carretera Arcos km 6 · 11406 Jerez de la Frontera</div>
     </div>
   </div>
   <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
-    <a href="tel:+34956151200" style="font-size:12px; color:var(--amber); text-decoration:none; font-weight:500;">📞 +34 956 151 200</a>
-    <a href="https://maps.google.com/?q=Barcelo+Jerez+Montecastillo+Carretera+Arcos+km+6+Jerez+de+la+Frontera" target="_blank" style="font-size:12px; background:var(--amber); color:#fff; padding:5px 12px; border-radius:20px; text-decoration:none; font-weight:500;">📍 Ver en Google Maps</a>
+    <a href="tel:+34956151200" style="font-size:12px; color:rgba(255,255,255,0.85); text-decoration:none; font-weight:500;">📞 +34 956 151 200</a>
+    <a href="https://maps.google.com/?q=Barcelo+Jerez+Montecastillo+Carretera+Arcos+km+6+Jerez+de+la+Frontera" target="_blank" style="font-size:12px; background:rgba(255,255,255,0.2); color:#fff; padding:5px 12px; border-radius:20px; text-decoration:none; font-weight:500; border:1px solid rgba(255,255,255,0.4);">📍 Ver en Google Maps</a>
   </div>
 </div>
 
@@ -725,7 +725,7 @@
         <a href="https://maps.google.com/?q=Recinto+Ferial+Feria+del+Caballo+Jerez" target="_blank" style="background:#111; padding:16px; text-decoration:none; display:flex; gap:12px; align-items:center;"><span style="font-size:28px;">🎡</span><div><div style="color:#7B1FA2; font-weight:700; font-size:13px;">Recinto Ferial</div><div style="color:rgba(255,255,255,0.6); font-size:11px; margin-top:2px;">Feria del Caballo · Jue-Sáb</div></div></a>
         <a href="https://maps.google.com/?q=Bodegas+Fundador+Puerta+de+Rota+Jerez" target="_blank" style="background:#111; padding:16px; text-decoration:none; display:flex; gap:12px; align-items:center;"><span style="font-size:28px;">🥃</span><div><div style="color:#2E7D32; font-weight:700; font-size:13px;">Bodegas Fundador</div><div style="color:rgba(255,255,255,0.6); font-size:11px; margin-top:2px;">Cata Premium · Sáb 16 · 11:00h</div></div></a>
         <a href="https://maps.google.com/?q=Calle+San+Miguel+2+Jerez+de+la+Frontera" target="_blank" style="background:#111; padding:16px; text-decoration:none; display:flex; gap:12px; align-items:center;"><span style="font-size:28px;">🍴</span><div><div style="color:#C0392B; font-weight:700; font-size:13px;">Taberna Jerez</div><div style="color:rgba(255,255,255,0.6); font-size:11px; margin-top:2px;">Almuerzo Sáb 16 · 14:30h · Calle San Miguel 2</div></div></a>
-        <a href="https://maps.google.com/?q=Aeropuerto+de+Jerez+SVQ" target="_blank" style="background:#111; padding:16px; text-decoration:none; display:flex; gap:12px; align-items:center;"><span style="font-size:28px;">✈️</span><div><div style="color:#1565C0; font-weight:700; font-size:13px;">Aeropuerto de Jerez (SVQ)</div><div style="color:rgba(255,255,255,0.6); font-size:11px; margin-top:2px;">Vuelo vuelta · Sáb 16 · 19:30h</div></div></a>
+        <a href="https://maps.google.com/?q=Aeropuerto+de+Sevilla+SVQ" target="_blank" style="background:#111; padding:16px; text-decoration:none; display:flex; gap:12px; align-items:center;"><span style="font-size:28px;">✈️</span><div><div style="color:#1565C0; font-weight:700; font-size:13px;">Aeropuerto de Sevilla (SVQ)</div><div style="color:rgba(255,255,255,0.6); font-size:11px; margin-top:2px;">Vuelo vuelta · Sáb 16 · 19:30h</div></div></a>
       </div>
       <div style="text-align:center; padding:12px; color:rgba(255,255,255,0.3); font-size:10px; font-style:italic;">Toca cualquier punto para abrirlo en Google Maps</div>
     </div>
