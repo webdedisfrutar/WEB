@@ -68,7 +68,12 @@
             background-size: cover; background-position: center;
             display:flex; flex-direction:column; align-items:center; justify-content:center;
             cursor:pointer; padding:30px;">
-  <div style="font-family:'Playfair Display',serif; font-size:clamp(36px, 18vw, 84px); font-weight:700; letter-spacing:clamp(2px, 2vw, 8px); color:#fff; text-align:center; line-height:1.1; text-shadow: 0 2px 20px rgba(186,117,23,0.6);">DISFRUTAR</div>
+  <div id="overlay-title" style="font-family:'Playfair Display',serif; font-size:84px; font-weight:700; letter-spacing:8px; color:#fff; text-align:center; line-height:1.1; text-shadow: 0 2px 20px rgba(186,117,23,0.6); max-width:100%; box-sizing:border-box;">DISFRUTAR</div>
+  <style>
+    @media (max-width: 480px) {
+      #overlay-title { font-size: clamp(42px, 15vw, 84px) !important; letter-spacing: 2px !important; }
+    }
+  </style>
   <div style="font-size:11px; letter-spacing:4px; color:#BA7517; margin-top:8px; font-family:'DM Sans',sans-serif; text-transform:uppercase;">viajes · experiencias</div>
   <div style="width:1px; height:40px; background:rgba(186,117,23,0.4); margin:22px 0;"></div>
   <div style="font-family:'Playfair Display',serif; font-size:18px; color:#FAC775; letter-spacing:2px; text-align:center;">Feria del Caballo · Jerez 2026</div>
