@@ -58,6 +58,10 @@
   footer { position: relative; z-index: 2; text-align: center; margin-top: 1.5rem; font-size: 11px; color: rgba(0,0,0,0.3); letter-spacing: 0.3px; }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+  @keyframes alcoholBlink {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 rgba(192,57,43,0); }
+    50% { opacity: 0.6; box-shadow: 0 0 12px rgba(192,57,43,0.6); }
+  }
   @keyframes bannerBlink {
     0%, 100% { box-shadow: 0 4px 20px rgba(192,57,43,0.35); background: linear-gradient(135deg, #7B0000 0%, #C0392B 40%, #8B0000 100%); }
     50% { box-shadow: 0 4px 40px rgba(255,50,50,0.8), 0 0 20px rgba(255,50,50,0.5); background: linear-gradient(135deg, #a00000 0%, #e03030 40%, #a00000 100%); }
@@ -427,16 +431,16 @@
 <!-- MODAL TRACKER -->
 <div id="modal-tracker" onclick="if(event.target===this)this.style.display='none'"
      style="display:none; position:fixed; inset:0; width:100vw; height:100vh;
-            background:rgba(20,30,48,0.98); z-index:9999; align-items:flex-start; justify-content:center; overflow-y:auto;">
+            background:#f5f0e8; z-index:9999; align-items:flex-start; justify-content:center; overflow-y:auto;">
   <button onclick="document.getElementById('modal-tracker').style.display='none'"
-          style="position:fixed; top:14px; right:16px; background:rgba(255,255,255,0.15); color:#fff; border:none; border-radius:50%; width:40px; height:40px; font-size:20px; cursor:pointer; z-index:10000; line-height:1;">✕</button>
+          style="position:fixed; top:14px; right:16px; background:rgba(0,0,0,0.15); color:#333; border:none; border-radius:50%; width:40px; height:40px; font-size:20px; cursor:pointer; z-index:10000; line-height:1;">✕</button>
   <div style="width:100%; max-width:600px; padding:20px; box-sizing:border-box;">
     <div style="text-align:center; margin-bottom:16px;">
-      <div style="font-size:11px; letter-spacing:3px; color:#ff4444; text-transform:uppercase; font-family:'DM Sans',sans-serif; margin-bottom:6px;">🛰️ SISTEMA DE VIGILANCIA DISFRUTAR v1.0</div>
-      <div style="font-family:'Playfair Display',serif; font-size:22px; color:#fff; font-weight:700;">Localización en tiempo real</div>
-      <div style="font-size:11px; color:rgba(255,255,255,0.4); margin-top:4px; font-style:italic;">Precisión: dudosa · Fiabilidad: ninguna</div>
+      <div style="font-size:11px; letter-spacing:3px; color:#C0392B; text-transform:uppercase; font-family:'DM Sans',sans-serif; margin-bottom:6px;">🛰️ SISTEMA DE VIGILANCIA DISFRUTAR v1.0</div>
+      <div style="font-family:'Playfair Display',serif; font-size:22px; color:#3a2000; font-weight:700;">Localización en tiempo real</div>
+      <div style="font-size:11px; color:rgba(0,0,0,0.35); margin-top:4px; font-style:italic;">Precisión: dudosa · Fiabilidad: ninguna</div>
     </div>
-    <div style="position:relative; border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,0.1); height:300px;">
+    <div style="position:relative; border-radius:12px; overflow:hidden; border:1px solid rgba(0,0,0,0.1); height:min(300px, 40vh);">
       <!-- Mapa real de Jerez via OpenStreetMap -->
       <iframe
         src="https://www.openstreetmap.org/export/embed.html?bbox=-6.1700%2C36.6700%2C-6.1000%2C36.7100&layer=mapnik"
@@ -467,29 +471,134 @@
         </g>
         <g id="tracker-samuel" transform="translate(80,220)">
           <circle r="16" fill="#2980B9" opacity="0.3"/><circle r="11" fill="#2980B9" stroke="#fff" stroke-width="2"/>
-          <text text-anchor="middle" y="5" font-size="11">🧑‍💻</text>
+          <text text-anchor="middle" y="5" font-size="11">🧑</text>
           <text text-anchor="middle" y="26" font-size="8" fill="#fff" font-weight="bold" font-family="sans-serif" style="text-shadow:0 1px 3px #000">Samuel</text>
         </g>
       </svg>
     </div>
     <div style="display:flex; flex-direction:column; gap:8px; margin-top:12px;">
-      <div style="background:#1e2d45; border-radius:10px; padding:10px 14px; display:flex; align-items:center; gap:10px; border-left:3px solid #C0392B;">
-        <span style="font-size:20px;">🧔</span><div><div style="color:#fff; font-size:12px; font-weight:600;">Felip</div><div id="status-felip" style="color:rgba(255,255,255,0.5); font-size:11px; font-style:italic;">Calculando...</div></div><span style="margin-left:auto;">📡</span>
+      <div id="card-felip" style="background:#fff; border-radius:10px; padding:0; box-shadow:0 1px 6px rgba(0,0,0,0.08); display:flex; align-items:stretch; gap:0; border-left:4px solid #C0392B; overflow:hidden; min-height:90px;">
+        <div style="background:#C0392B18; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:10px 10px; gap:4px; min-width:56px;">
+          <svg viewBox="0 0 32 24" width="32" height="24" style="display:block;">
+            <path id="wifi-arc3-felip" d="M2,10 Q16,-2 30,10" fill="none" stroke="#C0392B" stroke-width="2.5" stroke-linecap="round" opacity="1"/>
+            <path id="wifi-arc2-felip" d="M6,15 Q16,5 26,15" fill="none" stroke="#C0392B" stroke-width="2.5" stroke-linecap="round" opacity="1"/>
+            <path id="wifi-arc1-felip" d="M10,20 Q16,13 22,20" fill="none" stroke="#C0392B" stroke-width="2.5" stroke-linecap="round" opacity="1"/>
+            <circle cx="16" cy="23" r="2" fill="#C0392B"/>
+          </svg>
+          <span style="font-size:32px; line-height:1;">🧔</span>
+        </div>
+        <div style="flex:1; padding:12px 14px;">
+          <div style="color:#1a0a00; font-size:16px; font-weight:700; margin-bottom:4px;">Felip</div>
+          <div id="status-felip" style="color:rgba(0,0,0,0.7); font-size:12px; font-style:italic;">Calculando...</div>
+          <div style="margin-top:8px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:3px;">
+              <span style="font-size:10px; font-weight:700; letter-spacing:1px; color:rgba(0,0,0,0.6); text-transform:uppercase;">🍷 Tasa de alcohol en sangre</span>
+              <span id="alcohol-label-felip" style="font-size:11px; font-weight:700; color:rgba(0,0,0,0.7);">--</span>
+            </div>
+            <div style="background:#eee; border-radius:10px; height:8px; overflow:hidden;">
+              <div id="alcohol-felip" style="height:100%; width:0%; border-radius:10px; background:#2E7D32; transition:width 1s ease, background 1s ease;"></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div style="background:#1e2d45; border-radius:10px; padding:10px 14px; display:flex; align-items:center; gap:10px; border-left:3px solid #E67E22;">
-        <span style="font-size:20px;">🧑</span><div><div style="color:#fff; font-size:12px; font-weight:600;">Fernando</div><div id="status-fernando" style="color:rgba(255,255,255,0.5); font-size:11px; font-style:italic;">Calculando...</div></div><span style="margin-left:auto;">📡</span>
+      <div id="card-fernando" style="background:#fff; border-radius:10px; padding:0; box-shadow:0 1px 6px rgba(0,0,0,0.08); display:flex; align-items:stretch; gap:0; border-left:4px solid #E67E22; overflow:hidden; min-height:90px;">
+        <div style="background:#E67E2218; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:10px 10px; gap:4px; min-width:56px;">
+          <svg viewBox="0 0 32 24" width="32" height="24" style="display:block;">
+            <path id="wifi-arc3-fernando" d="M2,10 Q16,-2 30,10" fill="none" stroke="#E67E22" stroke-width="2.5" stroke-linecap="round" opacity="1"/>
+            <path id="wifi-arc2-fernando" d="M6,15 Q16,5 26,15" fill="none" stroke="#E67E22" stroke-width="2.5" stroke-linecap="round" opacity="1"/>
+            <path id="wifi-arc1-fernando" d="M10,20 Q16,13 22,20" fill="none" stroke="#E67E22" stroke-width="2.5" stroke-linecap="round" opacity="1"/>
+            <circle cx="16" cy="23" r="2" fill="#E67E22"/>
+          </svg>
+          <span style="font-size:32px; line-height:1;">🧑</span>
+        </div>
+        <div style="flex:1; padding:12px 14px;">
+          <div style="color:#1a0a00; font-size:16px; font-weight:700; margin-bottom:4px;">Fernando</div>
+          <div id="status-fernando" style="color:rgba(0,0,0,0.7); font-size:12px; font-style:italic;">Calculando...</div>
+          <div style="margin-top:8px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:3px;">
+              <span style="font-size:10px; font-weight:700; letter-spacing:1px; color:rgba(0,0,0,0.6); text-transform:uppercase;">🍷 Tasa de alcohol en sangre</span>
+              <span id="alcohol-label-fernando" style="font-size:11px; font-weight:700; color:rgba(0,0,0,0.7);">--</span>
+            </div>
+            <div style="background:#eee; border-radius:10px; height:8px; overflow:hidden;">
+              <div id="alcohol-fernando" style="height:100%; width:0%; border-radius:10px; background:#2E7D32; transition:width 1s ease, background 1s ease;"></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div style="background:#1e2d45; border-radius:10px; padding:10px 14px; display:flex; align-items:center; gap:10px; border-left:3px solid #8E44AD;">
-        <span style="font-size:20px;">👨‍🦳</span><div><div style="color:#fff; font-size:12px; font-weight:600;">Herminio</div><div id="status-herminio" style="color:rgba(255,255,255,0.5); font-size:11px; font-style:italic;">Calculando...</div></div><span style="margin-left:auto;">📡</span>
+      <div id="card-herminio" style="background:#fff; border-radius:10px; padding:0; box-shadow:0 1px 6px rgba(0,0,0,0.08); display:flex; align-items:stretch; gap:0; border-left:4px solid #8E44AD; overflow:hidden; min-height:90px;">
+        <div style="background:#8E44AD18; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:10px 10px; gap:4px; min-width:56px;">
+          <svg viewBox="0 0 32 24" width="32" height="24" style="display:block;">
+            <path id="wifi-arc3-herminio" d="M2,10 Q16,-2 30,10" fill="none" stroke="#8E44AD" stroke-width="2.5" stroke-linecap="round" opacity="1"/>
+            <path id="wifi-arc2-herminio" d="M6,15 Q16,5 26,15" fill="none" stroke="#8E44AD" stroke-width="2.5" stroke-linecap="round" opacity="1"/>
+            <path id="wifi-arc1-herminio" d="M10,20 Q16,13 22,20" fill="none" stroke="#8E44AD" stroke-width="2.5" stroke-linecap="round" opacity="1"/>
+            <circle cx="16" cy="23" r="2" fill="#8E44AD"/>
+          </svg>
+          <span style="font-size:32px; line-height:1;">👨‍🦳</span>
+        </div>
+        <div style="flex:1; padding:12px 14px;">
+          <div style="color:#1a0a00; font-size:16px; font-weight:700; margin-bottom:4px;">Herminio</div>
+          <div id="status-herminio" style="color:rgba(0,0,0,0.7); font-size:12px; font-style:italic;">Calculando...</div>
+          <div style="margin-top:8px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:3px;">
+              <span style="font-size:10px; font-weight:700; letter-spacing:1px; color:rgba(0,0,0,0.6); text-transform:uppercase;">🍷 Tasa de alcohol en sangre</span>
+              <span id="alcohol-label-herminio" style="font-size:11px; font-weight:700; color:rgba(0,0,0,0.7);">--</span>
+            </div>
+            <div style="background:#eee; border-radius:10px; height:8px; overflow:hidden;">
+              <div id="alcohol-herminio" style="height:100%; width:0%; border-radius:10px; background:#2E7D32; transition:width 1s ease, background 1s ease;"></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div style="background:#1e2d45; border-radius:10px; padding:10px 14px; display:flex; align-items:center; gap:10px; border-left:3px solid #27AE60;">
-        <span style="font-size:20px;">👴</span><div><div style="color:#fff; font-size:12px; font-weight:600;">José Luis</div><div id="status-joseluís" style="color:rgba(255,255,255,0.5); font-size:11px; font-style:italic;">Calculando...</div></div><span style="margin-left:auto;">📡</span>
+      <div id="card-joseluís" style="background:#fff; border-radius:10px; padding:0; box-shadow:0 1px 6px rgba(0,0,0,0.08); display:flex; align-items:stretch; gap:0; border-left:4px solid #27AE60; overflow:hidden; min-height:90px;">
+        <div style="background:#27AE6018; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:10px 10px; gap:4px; min-width:56px;">
+          <svg viewBox="0 0 32 24" width="32" height="24" style="display:block;">
+            <path id="wifi-arc3-joseluís" d="M2,10 Q16,-2 30,10" fill="none" stroke="#27AE60" stroke-width="2.5" stroke-linecap="round" opacity="1"/>
+            <path id="wifi-arc2-joseluís" d="M6,15 Q16,5 26,15" fill="none" stroke="#27AE60" stroke-width="2.5" stroke-linecap="round" opacity="1"/>
+            <path id="wifi-arc1-joseluís" d="M10,20 Q16,13 22,20" fill="none" stroke="#27AE60" stroke-width="2.5" stroke-linecap="round" opacity="1"/>
+            <circle cx="16" cy="23" r="2" fill="#27AE60"/>
+          </svg>
+          <span style="font-size:32px; line-height:1;">👴</span>
+        </div>
+        <div style="flex:1; padding:12px 14px;">
+          <div style="color:#1a0a00; font-size:16px; font-weight:700; margin-bottom:4px;">José Luis</div>
+          <div id="status-joseluís" style="color:rgba(0,0,0,0.7); font-size:12px; font-style:italic;">Calculando...</div>
+          <div style="margin-top:8px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:3px;">
+              <span style="font-size:10px; font-weight:700; letter-spacing:1px; color:rgba(0,0,0,0.6); text-transform:uppercase;">🍷 Tasa de alcohol en sangre</span>
+              <span id="alcohol-label-joseluís" style="font-size:11px; font-weight:700; color:rgba(0,0,0,0.7);">--</span>
+            </div>
+            <div style="background:#eee; border-radius:10px; height:8px; overflow:hidden;">
+              <div id="alcohol-joseluís" style="height:100%; width:0%; border-radius:10px; background:#2E7D32; transition:width 1s ease, background 1s ease;"></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div style="background:#1e2d45; border-radius:10px; padding:10px 14px; display:flex; align-items:center; gap:10px; border-left:3px solid #2980B9;">
-        <span style="font-size:20px;">🧑‍💻</span><div><div style="color:#fff; font-size:12px; font-weight:600;">Samuel</div><div id="status-samuel" style="color:rgba(255,255,255,0.5); font-size:11px; font-style:italic;">Calculando...</div></div><span style="margin-left:auto;">📡</span>
+      <div id="card-samuel" style="background:#fff; border-radius:10px; padding:0; box-shadow:0 1px 6px rgba(0,0,0,0.08); display:flex; align-items:stretch; gap:0; border-left:4px solid #2980B9; overflow:hidden; min-height:90px;">
+        <div style="background:#2980B918; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:10px 10px; gap:4px; min-width:56px;">
+          <svg viewBox="0 0 32 24" width="32" height="24" style="display:block;">
+            <path id="wifi-arc3-samuel" d="M2,10 Q16,-2 30,10" fill="none" stroke="#2980B9" stroke-width="2.5" stroke-linecap="round" opacity="1"/>
+            <path id="wifi-arc2-samuel" d="M6,15 Q16,5 26,15" fill="none" stroke="#2980B9" stroke-width="2.5" stroke-linecap="round" opacity="1"/>
+            <path id="wifi-arc1-samuel" d="M10,20 Q16,13 22,20" fill="none" stroke="#2980B9" stroke-width="2.5" stroke-linecap="round" opacity="1"/>
+            <circle cx="16" cy="23" r="2" fill="#2980B9"/>
+          </svg>
+          <span style="font-size:32px; line-height:1;">🧑</span>
+        </div>
+        <div style="flex:1; padding:12px 14px;">
+          <div style="color:#1a0a00; font-size:16px; font-weight:700; margin-bottom:4px;">Samuel</div>
+          <div id="status-samuel" style="color:rgba(0,0,0,0.7); font-size:12px; font-style:italic;">Calculando...</div>
+          <div style="margin-top:8px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:3px;">
+              <span style="font-size:10px; font-weight:700; letter-spacing:1px; color:rgba(0,0,0,0.6); text-transform:uppercase;">🍷 Tasa de alcohol en sangre</span>
+              <span id="alcohol-label-samuel" style="font-size:11px; font-weight:700; color:rgba(0,0,0,0.7);">--</span>
+            </div>
+            <div style="background:#eee; border-radius:10px; height:8px; overflow:hidden;">
+              <div id="alcohol-samuel" style="height:100%; width:0%; border-radius:10px; background:#2E7D32; transition:width 1s ease, background 1s ease;"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div style="text-align:center; margin-top:14px; font-size:10px; color:rgba(255,255,255,0.2); font-style:italic;">
+        <div style="text-align:center; margin-top:14px; font-size:10px; color:rgba(0,0,0,0.3); font-style:italic;">
       Sistema de vigilancia DISFRUTAR v1.0 · Precisión: dudosa · Fiabilidad: ninguna
     </div>
   </div>
@@ -527,6 +636,34 @@ function initTracker() {
   moveTrackers();
   trackerInterval = setInterval(moveTrackers, 3500);
 }
+function getAlcoholLevel(id) {
+  const now = new Date();
+  const feria = new Date('2026-05-14T18:00:00');
+  const diff = now - feria;
+  if (diff < 0) return Math.random() * 15;
+  const horasEnFeria = diff / (1000*60*60);
+  const base = Math.min(20 + horasEnFeria * 8 + Math.random() * 20, 99);
+  // Cada uno tiene su ritmo
+  const factor = {felip:1.1, fernando:0.9, herminio:1.2, 'joseluís':0.8, samuel:1.0};
+  return Math.min(base * (factor[id] || 1), 99);
+}
+
+function getAlcoholLabel(level) {
+  if (level < 15) return '🍷 Sobrio. Raro.';
+  if (level < 35) return '🍷 Calentando motores';
+  if (level < 55) return '🎡 En modo feria';
+  if (level < 70) return '📡 GPS inestable';
+  if (level < 85) return '🚨 Señal perdida';
+  return '🆘 ¿Estás ahí?';
+}
+
+function getAlcoholColor(level) {
+  if (level < 25) return '#2E7D32';
+  if (level < 50) return '#F9A825';
+  if (level < 70) return '#E65100';
+  return '#C0392B';
+}
+
 function moveTrackers() {
   TRACKER_CHICOS.forEach(id => {
     const el = document.getElementById('tracker-' + id);
@@ -541,6 +678,27 @@ function moveTrackers() {
       const estado = TRACKER_ESTADOS[Math.floor(Math.random() * TRACKER_ESTADOS.length)];
       statusEl.textContent = zona + ' · ' + estado;
     }
+    const level = getAlcoholLevel(id);
+    const bar = document.getElementById('alcohol-' + id);
+    const label = document.getElementById('alcohol-label-' + id);
+    if (bar) { bar.style.width = level + '%'; bar.style.background = getAlcoholColor(level); }
+    if (label) label.textContent = getAlcoholLabel(level);
+    const card = document.getElementById('card-' + id);
+    if (card) {
+      if (level >= 70) {
+        card.style.animation = 'alcoholBlink 1s ease-in-out infinite';
+        card.style.borderLeftColor = '#C0392B';
+      } else {
+        card.style.animation = 'none';
+      }
+    }
+
+    // WiFi animation for all
+    const wifiLevel = Math.floor(Math.random() * 4);
+    ['wifi-arc1-'+id,'wifi-arc2-'+id,'wifi-arc3-'+id].forEach((aId, i) => {
+      const a = document.getElementById(aId);
+      if (a) a.style.opacity = i < wifiLevel ? '1' : '0.12';
+    });
   });
 }
 </script>
