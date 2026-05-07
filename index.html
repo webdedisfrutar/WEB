@@ -57,6 +57,11 @@
   .leg-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
   footer { position: relative; z-index: 2; text-align: center; margin-top: 1.5rem; font-size: 11px; color: rgba(0,0,0,0.3); letter-spacing: 0.3px; }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+  @keyframes bannerBlink {
+    0%, 100% { box-shadow: 0 4px 20px rgba(192,57,43,0.35); background: linear-gradient(135deg, #7B0000 0%, #C0392B 40%, #8B0000 100%); }
+    50% { box-shadow: 0 4px 40px rgba(255,50,50,0.8), 0 0 20px rgba(255,50,50,0.5); background: linear-gradient(135deg, #a00000 0%, #e03030 40%, #a00000 100%); }
+  }
 </style>
 </head>
 <body>
@@ -392,6 +397,155 @@
   <div class="leg-item"><div class="leg-dot" style="background:#7F77DD"></div> Noche</div>
 </div>
 
+<!-- BANNER CONTROL OPERACIONES -->
+<div style="max-width:900px; margin: 1.5rem auto 0; position:relative; z-index:2;">
+  <button onclick="document.getElementById('modal-tracker').style.display='flex'; initTracker();"
+     style="width:100%; border:none; cursor:pointer; padding:0; background:transparent; display:block;">
+    <div style="background: linear-gradient(135deg, #7B0000 0%, #C0392B 40%, #8B0000 100%);
+                border-radius:14px; padding:14px 24px;
+                display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;
+                box-shadow:0 4px 20px rgba(192,57,43,0.35);
+                animation: bannerBlink 1.2s ease-in-out infinite;"
+         onmouseover="this.style.animationPlayState='paused'"
+         onmouseout="this.style.animationPlayState='running'">
+      <div style="display:flex; align-items:center; gap:14px;">
+        <div style="font-size:28px; line-height:1;">🛰️</div>
+        <div style="text-align:left;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="width:8px; height:8px; background:#ff4444; border-radius:50%; display:inline-block;"></span>
+            <span style="font-size:9px; font-weight:700; letter-spacing:2px; color:rgba(255,255,255,0.7); text-transform:uppercase;">EN DIRECTO</span>
+          </div>
+          <div style="font-family:'Playfair Display',serif; font-size:16px; font-weight:700; color:#fff; margin-top:2px; animation: blink 1.4s ease-in-out infinite;">Control de Operaciones · Geolocalización de los chicos</div>
+          <div style="font-size:11px; color:rgba(255,255,255,0.65); font-family:'DM Sans',sans-serif; margin-top:1px;">¿Dónde están los chicos? 👀</div>
+        </div>
+      </div>
+      <div style="font-size:11px; color:rgba(255,255,255,0.9); font-weight:600; letter-spacing:1px; border:1px solid rgba(255,255,255,0.4); padding:6px 16px; border-radius:20px; white-space:nowrap; animation: blink 1.4s ease-in-out infinite;">LOCALIZAR →</div>
+    </div>
+  </button>
+</div>
+
+<!-- MODAL TRACKER -->
+<div id="modal-tracker" onclick="if(event.target===this)this.style.display='none'"
+     style="display:none; position:fixed; inset:0; width:100vw; height:100vh;
+            background:rgba(20,30,48,0.98); z-index:9999; align-items:flex-start; justify-content:center; overflow-y:auto;">
+  <button onclick="document.getElementById('modal-tracker').style.display='none'"
+          style="position:fixed; top:14px; right:16px; background:rgba(255,255,255,0.15); color:#fff; border:none; border-radius:50%; width:40px; height:40px; font-size:20px; cursor:pointer; z-index:10000; line-height:1;">✕</button>
+  <div style="width:100%; max-width:600px; padding:20px; box-sizing:border-box;">
+    <div style="text-align:center; margin-bottom:16px;">
+      <div style="font-size:11px; letter-spacing:3px; color:#ff4444; text-transform:uppercase; font-family:'DM Sans',sans-serif; margin-bottom:6px;">🛰️ SISTEMA DE VIGILANCIA DISFRUTAR v1.0</div>
+      <div style="font-family:'Playfair Display',serif; font-size:22px; color:#fff; font-weight:700;">Localización en tiempo real</div>
+      <div style="font-size:11px; color:rgba(255,255,255,0.4); margin-top:4px; font-style:italic;">Precisión: dudosa · Fiabilidad: ninguna</div>
+    </div>
+    <div style="position:relative; border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,0.1); height:300px;">
+      <!-- Mapa real de Jerez via OpenStreetMap -->
+      <iframe
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-6.1700%2C36.6700%2C-6.1000%2C36.7100&layer=mapnik"
+        style="width:100%; height:100%; border:none; display:block; filter:saturate(0.7) brightness(0.85);"
+        scrolling="no">
+      </iframe>
+      <!-- Iconos flotantes encima del mapa -->
+      <svg id="jerez-map" viewBox="0 0 400 300" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none;">
+        <g id="tracker-felip" transform="translate(120,100)">
+          <circle r="16" fill="#C0392B" opacity="0.3"/><circle r="11" fill="#C0392B" stroke="#fff" stroke-width="2"/>
+          <text text-anchor="middle" y="5" font-size="11">🧔</text>
+          <text text-anchor="middle" y="26" font-size="8" fill="#fff" font-weight="bold" font-family="sans-serif" style="text-shadow:0 1px 3px #000">Felip</text>
+        </g>
+        <g id="tracker-fernando" transform="translate(280,100)">
+          <circle r="16" fill="#E67E22" opacity="0.3"/><circle r="11" fill="#E67E22" stroke="#fff" stroke-width="2"/>
+          <text text-anchor="middle" y="5" font-size="11">🧑</text>
+          <text text-anchor="middle" y="26" font-size="8" fill="#fff" font-weight="bold" font-family="sans-serif" style="text-shadow:0 1px 3px #000">Fernando</text>
+        </g>
+        <g id="tracker-herminio" transform="translate(200,180)">
+          <circle r="16" fill="#8E44AD" opacity="0.3"/><circle r="11" fill="#8E44AD" stroke="#fff" stroke-width="2"/>
+          <text text-anchor="middle" y="5" font-size="11">👨‍🦳</text>
+          <text text-anchor="middle" y="26" font-size="8" fill="#fff" font-weight="bold" font-family="sans-serif" style="text-shadow:0 1px 3px #000">Herminio</text>
+        </g>
+        <g id="tracker-joseluís" transform="translate(320,200)">
+          <circle r="16" fill="#27AE60" opacity="0.3"/><circle r="11" fill="#27AE60" stroke="#fff" stroke-width="2"/>
+          <text text-anchor="middle" y="5" font-size="11">👴</text>
+          <text text-anchor="middle" y="26" font-size="8" fill="#fff" font-weight="bold" font-family="sans-serif" style="text-shadow:0 1px 3px #000">José Luis</text>
+        </g>
+        <g id="tracker-samuel" transform="translate(80,220)">
+          <circle r="16" fill="#2980B9" opacity="0.3"/><circle r="11" fill="#2980B9" stroke="#fff" stroke-width="2"/>
+          <text text-anchor="middle" y="5" font-size="11">🧑‍💻</text>
+          <text text-anchor="middle" y="26" font-size="8" fill="#fff" font-weight="bold" font-family="sans-serif" style="text-shadow:0 1px 3px #000">Samuel</text>
+        </g>
+      </svg>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:8px; margin-top:12px;">
+      <div style="background:#1e2d45; border-radius:10px; padding:10px 14px; display:flex; align-items:center; gap:10px; border-left:3px solid #C0392B;">
+        <span style="font-size:20px;">🧔</span><div><div style="color:#fff; font-size:12px; font-weight:600;">Felip</div><div id="status-felip" style="color:rgba(255,255,255,0.5); font-size:11px; font-style:italic;">Calculando...</div></div><span style="margin-left:auto;">📡</span>
+      </div>
+      <div style="background:#1e2d45; border-radius:10px; padding:10px 14px; display:flex; align-items:center; gap:10px; border-left:3px solid #E67E22;">
+        <span style="font-size:20px;">🧑</span><div><div style="color:#fff; font-size:12px; font-weight:600;">Fernando</div><div id="status-fernando" style="color:rgba(255,255,255,0.5); font-size:11px; font-style:italic;">Calculando...</div></div><span style="margin-left:auto;">📡</span>
+      </div>
+      <div style="background:#1e2d45; border-radius:10px; padding:10px 14px; display:flex; align-items:center; gap:10px; border-left:3px solid #8E44AD;">
+        <span style="font-size:20px;">👨‍🦳</span><div><div style="color:#fff; font-size:12px; font-weight:600;">Herminio</div><div id="status-herminio" style="color:rgba(255,255,255,0.5); font-size:11px; font-style:italic;">Calculando...</div></div><span style="margin-left:auto;">📡</span>
+      </div>
+      <div style="background:#1e2d45; border-radius:10px; padding:10px 14px; display:flex; align-items:center; gap:10px; border-left:3px solid #27AE60;">
+        <span style="font-size:20px;">👴</span><div><div style="color:#fff; font-size:12px; font-weight:600;">José Luis</div><div id="status-joseluís" style="color:rgba(255,255,255,0.5); font-size:11px; font-style:italic;">Calculando...</div></div><span style="margin-left:auto;">📡</span>
+      </div>
+      <div style="background:#1e2d45; border-radius:10px; padding:10px 14px; display:flex; align-items:center; gap:10px; border-left:3px solid #2980B9;">
+        <span style="font-size:20px;">🧑‍💻</span><div><div style="color:#fff; font-size:12px; font-weight:600;">Samuel</div><div id="status-samuel" style="color:rgba(255,255,255,0.5); font-size:11px; font-style:italic;">Calculando...</div></div><span style="margin-left:auto;">📡</span>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:14px; font-size:10px; color:rgba(255,255,255,0.2); font-style:italic;">
+      Sistema de vigilancia DISFRUTAR v1.0 · Precisión: dudosa · Fiabilidad: ninguna
+    </div>
+  </div>
+</div>
+
+<script>
+const TRACKER_CHICOS = ['felip','fernando','herminio','joseluís','samuel'];
+const TRACKER_ESTADOS = [
+  "Última señal: Bar El Gallo. Sospechoso.",
+  "Movimiento errático detectado. Posible copeo.",
+  "Sin señal desde las 3:47am. Preocupante.",
+  "Localizado en zona de vinos. Sorpresa.",
+  "Demasiado quieto. Algo está tramando.",
+  "Detectado cerca de una bodega. De nuevo.",
+  "Señal intermitente. El móvil agoniza.",
+  "Última ubicación: la barra. Clásico.",
+  "GPS perdido. Probablemente bailando.",
+  "Velocidad: 0. Siesta confirmada.",
+  "Trayectoria impredecible. Sistema confundido.",
+  "Localizado junto a otros sospechosos.",
+  "Conexión perdida. No preguntes.",
+  "Rumbo desconocido. Brújula averiada.",
+];
+const TRACKER_ZONAS = [
+  "Recinto Ferial","Bar El Gallo","Tabanco El Pasaje",
+  "Bodegas Fundador","Plaza del Arenal","La Tasca",
+  "Plaza de Toros","Hotel Barceló","Calle Larga","Zona VIP (autoproclamada)"
+];
+let trackerInterval = null;
+let trackerInit = false;
+
+function initTracker() {
+  if (trackerInit) return;
+  trackerInit = true;
+  moveTrackers();
+  trackerInterval = setInterval(moveTrackers, 3500);
+}
+function moveTrackers() {
+  TRACKER_CHICOS.forEach(id => {
+    const el = document.getElementById('tracker-' + id);
+    const statusEl = document.getElementById('status-' + id);
+    if (!el) return;
+    const x = 40 + Math.random() * 320;
+    const y = 40 + Math.random() * 240;
+    el.style.transition = 'transform 2s ease';
+    el.setAttribute('transform', 'translate(' + x + ',' + y + ')');
+    if (statusEl) {
+      const zona = TRACKER_ZONAS[Math.floor(Math.random() * TRACKER_ZONAS.length)];
+      const estado = TRACKER_ESTADOS[Math.floor(Math.random() * TRACKER_ESTADOS.length)];
+      statusEl.textContent = zona + ' · ' + estado;
+    }
+  });
+}
+</script>
+
+
 <!-- 1. GASTOS -->
 <div style="text-align:center; margin:2rem auto 0; max-width:900px; position:relative; z-index:2;">
   <a href="https://tricount.com/tjNjvvpPmVTPaeGsGy" style="display:inline-block; background:#BA7517; color:#fff; font-family:'Playfair Display',serif; font-size:20px; font-weight:700; letter-spacing:1px; padding:18px 48px; border-radius:12px; text-decoration:none;">💰 GASTOS DE VIAJE</a>
@@ -663,6 +817,7 @@
     </div>
   </button>
 </div>
+
 
 <!-- 6. BOTIQUÍN -->
 <div style="max-width:900px; margin:1.5rem auto 0; position:relative; z-index:2;">
