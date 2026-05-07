@@ -151,7 +151,7 @@
       if (document.getElementById("pc-mins"))  document.getElementById("pc-mins").textContent  = pad(mins);
       if (document.getElementById("pc-secs"))  document.getElementById("pc-secs").textContent  = pad(secs);
       setT("pc-label-days","días"); setT("pc-label-hours","horas"); setT("pc-label-mins","minutos"); setT("pc-label-secs","segundos");
-      setT("pc-title1","🎡 Para nuestra llegada a Jerez"); setT("pc-title2","faltan..."); setT("pc-title3","🎡");
+      setT("pc-title1","🎡 Para nuestra llegada a Jerez, faltan: 🎡");
       setT("pc-footer","✈ BCN → SVQ · Jueves 14 Mayo · 09:15h");
     } else {
       launchFireworks();
@@ -165,10 +165,10 @@
         if (document.getElementById("pc-mins"))  document.getElementById("pc-mins").textContent  = pad(mins);
         if (document.getElementById("pc-secs"))  document.getElementById("pc-secs").textContent  = pad(secs);
         setT("pc-label-hours","horas"); setT("pc-label-mins","minutos"); setT("pc-label-secs","de feria");
-        setT("pc-title1","¡¡ ESTAMOS EN JEREZ !!"); setT("pc-title2","🎡 Lleváis en la Feria 🎡"); setT("pc-title3","");
+        setT("pc-title1","¡¡ ESTAMOS EN JEREZ !! 🎡 Lleváis en la Feria 🎡");
         setT("pc-footer","✈ Vuelo de vuelta · Sábado 16 Mayo · 19:30h");
       } else {
-        setT("pc-title1","¡¡ QUÉ GRANDE HA SIDO !!"); setT("pc-title2","🎡 Jerez 2026 · Para siempre en el recuerdo 🎡"); setT("pc-title3","");
+        setT("pc-title1","¡¡ QUÉ GRANDE HA SIDO !! 🎡 Jerez 2026 · Para siempre en el recuerdo 🎡");
         if (document.getElementById("pc-days"))  document.getElementById("pc-days").textContent  = "🥂";
         if (document.getElementById("pc-hours")) document.getElementById("pc-hours").textContent = "🐴";
         if (document.getElementById("pc-mins"))  document.getElementById("pc-mins").textContent  = "💃";
@@ -225,12 +225,10 @@
   <div style="position:absolute; inset:0; background-image:url('https://raw.githubusercontent.com/webdedisfrutar/WEB/main/caballos%202.JPG'); background-size:cover; background-position:center; filter:blur(6px) brightness(0.35); transform:scale(1.06); z-index:0;"></div>
   <div style="position:relative; z-index:1; padding:16px 28px; border:1px solid rgba(186,117,23,0.2); border-radius:16px;">
     <div style="text-align:center; margin-bottom:12px;">
-      <div style="display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:8px;">
-        <span id="pc-title1" style="font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:#fff; letter-spacing:1px;">🎡 Para nuestra llegada a Jerez</span>
-        <span style="color:rgba(186,117,23,0.5); font-size:18px;">·</span>
-        <span id="pc-title2" style="font-size:13px; font-weight:500; letter-spacing:2px; color:rgba(255,255,255,0.85); text-transform:uppercase; font-family:'DM Sans',sans-serif;">🎡</span>
-        <span style="color:rgba(186,117,23,0.5); font-size:18px;">·</span>
-        <span id="pc-title3" style="font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:#FAC775; letter-spacing:1px;">faltan...</span>
+      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;">
+        <div id="pc-title1" style="font-family:'Playfair Display',serif; font-size:18px; font-weight:600; color:#FA8C17; letter-spacing:0.5px; text-align:center; width:100%;">🎡 Para nuestra llegada a Jerez, faltan: 🎡</div>
+        <span id="pc-title2" style="display:none;"></span>
+        <span id="pc-title3" style="display:none;"></span>
       </div>
     </div>
     <div style="display:flex; gap:0; align-items:center; justify-content:center; flex-wrap:wrap;">
