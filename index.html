@@ -304,6 +304,19 @@
       <div class="weekday">Viernes</div><div class="date-num">15</div><div class="month">Mayo 2026</div><div class="sublabel">Día 2 · FERIA</div>
     </div>
     <div class="events-list">
+
+      <!-- EVENTO COCHE DE CABALLOS -->
+      <div class="event-card" style="--accent:#BA7517; background:#fff; border:1px solid rgba(186,117,23,0.2); border-left:3px solid #BA7517; border-radius:10px;">
+        <div class="ev-time">11:00</div>
+        <div class="ev-name">🐴 Paseo por la Feria en Coche de Caballos</div>
+        <div class="ev-note">Recogida en Venta de Esteban · Disponible hasta la corrida de toros</div>
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-top:6px;">
+          <span class="ev-tag tag-transporte">Transporte</span>
+          <button onclick="document.getElementById('modal-coche').style.display='flex'"
+             style="font-size:10px; font-weight:600; letter-spacing:0.8px; background:#BA7517; color:#fff; padding:4px 12px; border-radius:20px; border:none; cursor:pointer;">FOTO</button>
+        </div>
+      </div>
+
       <!-- FRANJA CASUAL ELEGANTE -->
       <div style="border-radius:10px; background:#fff; padding:8px 8px 4px; border:1px solid rgba(0,0,0,0.07);">
         <div class="event-card" style="--accent:#185FA5; background:transparent; border:none; border-left:3px solid #185FA5; border-radius:0;">
@@ -1015,6 +1028,21 @@ function moveTrackers() {
 </script>
 
 <!-- MODALES -->
+<div id="modal-coche" onclick="if(event.target===this)this.style.display='none'"
+     style="display:none; position:fixed; inset:0; width:100vw; height:100vh;
+            background:rgba(0,0,0,0.92); z-index:9999; align-items:center; justify-content:center; overflow-y:auto;">
+  <button onclick="document.getElementById('modal-coche').style.display='none'"
+          style="position:fixed; top:14px; right:16px; background:rgba(255,255,255,0.25); color:#fff; border:none; border-radius:50%; width:40px; height:40px; font-size:20px; cursor:pointer; z-index:10000; line-height:1;">✕</button>
+  <div style="display:flex; flex-direction:column; align-items:center; gap:12px; padding:20px; width:100%; max-width:700px;">
+    <img src="https://raw.githubusercontent.com/webdedisfrutar/WEB/refs/heads/main/coche.jfif"
+         alt="Coche de Caballos"
+         style="width:100%; max-height:50vh; object-fit:contain; border-radius:10px; display:block;">
+    <img src="https://raw.githubusercontent.com/webdedisfrutar/WEB/refs/heads/main/coche2.jfif"
+         alt="Coche de Caballos 2"
+         style="width:100%; max-height:50vh; object-fit:contain; border-radius:10px; display:block;">
+  </div>
+</div>
+
 <div id="modal-cata" onclick="if(event.target===this)this.style.display='none'" style="display:none; position:fixed; inset:0; width:100vw; height:100vh; background:linear-gradient(160deg,#1a0f00 0%,#3a1a00 40%,#1a0a0a 100%); z-index:9999; align-items:center; justify-content:center;">
   <button onclick="document.getElementById('modal-cata').style.display='none'" style="position:fixed; top:14px; right:16px; background:rgba(255,255,255,0.25); color:#fff; border:none; border-radius:50%; width:40px; height:40px; font-size:20px; cursor:pointer; z-index:10000; line-height:1;">✕</button>
   <img src="https://raw.githubusercontent.com/webdedisfrutar/WEB/main/tiza.JPG" style="max-width:100vw; max-height:100vh; object-fit:contain; display:block;">
