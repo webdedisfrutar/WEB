@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -71,6 +72,7 @@
 <body>
 
 <!-- OVERLAY BIENVENIDA -->
+
 <div id="welcome-overlay"
      style="position:fixed; inset:0; z-index:99999;
             background-image: linear-gradient(160deg, rgba(26,15,0,0.88) 0%, rgba(58,26,0,0.75) 40%, rgba(26,10,10,0.88) 100%), url('https://raw.githubusercontent.com/webdedisfrutar/WEB/main/feria.jpg');
@@ -205,6 +207,7 @@
 <div class="horse-bg"></div>
 
 <!-- SITE HEADER -->
+
 <header style="position:relative; z-index:10; display:flex; align-items:center; justify-content:space-between; max-width:900px; margin:0 auto 2.5rem; padding:0 4px; animation: fadeUp 0.4s ease both;">
   <div style="display:flex; align-items:center; gap:14px;">
     <img src="https://raw.githubusercontent.com/webdedisfrutar/WEB/main/IMG_2528.jpg" style="width:52px; height:52px; border-radius:50%; object-fit:cover; border:2px solid var(--amber); flex-shrink:0;" alt="Disfrutar">
@@ -213,10 +216,12 @@
       <div style="font-size:9px; font-weight:300; letter-spacing:2.5px; color:var(--amber); text-transform:uppercase; margin-top:3px;">viajes · experiencias</div>
     </div>
   </div>
-  <a href="https://www.icloud.com/sharedalbum/#B1k5qXGF1EWxal" target="_blank"
-     style="display:inline-flex; align-items:center; gap:7px; color:var(--amber); font-family:'DM Sans',sans-serif; font-size:12px; font-weight:500; padding:8px 16px; border-radius:30px; text-decoration:none; border:1.5px solid var(--amber); letter-spacing:0.3px; white-space:nowrap;">
-    📸 Fotos del viaje
-  </a>
+  <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
+    <a href="https://www.icloud.com/sharedalbum/#B1k5qXGF1EWxal" target="_blank"
+       style="display:inline-flex; align-items:center; gap:7px; background:linear-gradient(135deg, #C0392B, #E74C3C); color:#fff; font-family:'DM Sans',sans-serif; font-size:12px; font-weight:600; padding:8px 16px; border-radius:30px; text-decoration:none; letter-spacing:0.3px; white-space:nowrap; box-shadow:0 2px 10px rgba(192,57,43,0.3);">
+      📸 Fotos del viaje
+    </a>
+  </div>
 </header>
 
 <header style="position:relative; z-index:2; text-align:center; margin-bottom:1.5rem; animation: fadeUp 0.6s ease both;">
@@ -230,6 +235,7 @@
 </header>
 
 <!-- CONTADOR -->
+
 <div id="page-countdown" style="max-width:900px; margin:0 auto 2rem; position:relative; z-index:2; border-radius:16px; overflow:hidden;">
   <div style="position:absolute; inset:0; background-image:url('https://raw.githubusercontent.com/webdedisfrutar/WEB/main/caballos%202.JPG'); background-size:cover; background-position:center; filter:blur(6px) brightness(0.35); transform:scale(1.06); z-index:0;"></div>
   <div style="position:relative; z-index:1; padding:16px 28px; border:1px solid rgba(186,117,23,0.2); border-radius:16px;">
@@ -254,9 +260,11 @@
 </div>
 
 <!-- GRID DE DÍAS -->
+
 <div class="days-grid">
 
   <!-- DÍA 1: JUEVES -->
+
   <div class="day-col">
     <div class="day-header d1">
       <div class="weekday">Jueves</div><div class="date-num">14</div><div class="month">Mayo 2026</div><div class="sublabel">Día 1 · Llegada</div>
@@ -286,6 +294,7 @@
   </div>
 
   <!-- DÍA 2: VIERNES -->
+
   <div class="day-col">
     <div class="day-header d2">
       <div class="weekday">Viernes</div><div class="date-num">15</div><div class="month">Mayo 2026</div><div class="sublabel">Día 2 · FERIA</div>
@@ -337,6 +346,7 @@
   </div>
 
   <!-- DÍA 3: SÁBADO -->
+
   <div class="day-col">
     <div class="day-header d3">
       <div class="weekday">Sábado</div><div class="date-num">16</div><div class="month">Mayo 2026</div><div class="sublabel">Día 3 · Vuelta</div>
@@ -363,12 +373,14 @@
 </div>
 
 <!-- SEPARADOR FLORES -->
+
 <div style="text-align:center; max-width:900px; margin:2rem auto 0; position:relative; z-index:2;">
   <img src="https://raw.githubusercontent.com/webdedisfrutar/WEB/main/flores.png" style="width:320px; opacity:0.85;">
 </div>
 
 <!-- LEYENDA -->
-<div class="legend" style="border-top:none; margin-top:1rem;">
+
+<div class="legend" style="border-top:none; margin-top:1rem; margin-bottom:2.5rem;">
   <div class="leg-item"><div class="leg-dot" style="background:#639922"></div> Comida / Cena</div>
   <div class="leg-item"><div class="leg-dot" style="background:#BA7517"></div> Fiesta / Caseta</div>
   <div class="leg-item"><div class="leg-dot" style="background:#185FA5"></div> Visita / Actividad</div>
@@ -376,7 +388,43 @@
   <div class="leg-item"><div class="leg-dot" style="background:#7F77DD"></div> Noche</div>
 </div>
 
+<!-- BANNER APP FERIA -->
+
+<div style="max-width:900px; margin: 0 auto 1.5rem; position:relative; z-index:2;">
+  <a href="https://apps.apple.com/es/app/drift-feria-de-jerez/id6755962637" target="_blank" style="text-decoration:none; display:block;">
+    <div style="border-radius:14px; overflow:hidden; position:relative;
+                background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 40%, #388E3C 70%, #1B8A3C 100%);
+                padding:16px 20px; box-shadow:0 4px 20px rgba(192,57,43,0.3);
+                display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+                transition:transform 0.2s;"
+         onmouseover="this.style.transform='translateY(-2px)'"
+         onmouseout="this.style.transform=''">
+      <!-- Icono app -->
+      <div style="width:60px; height:60px; border-radius:14px; overflow:hidden; flex-shrink:0;
+                  box-shadow:0 3px 12px rgba(0,0,0,0.3);">
+        <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/e8/9a/dd/e89add3c-8374-6960-bb81-1de0423c0516/Placeholder.mill/1200x630wa.jpg"
+             style="width:120px; height:120px; margin:-30px 0 0 -30px; object-fit:cover;">
+      </div>
+      <!-- Texto -->
+      <div style="flex:1; min-width:150px;">
+        <div style="font-size:9px; font-weight:700; letter-spacing:2px; color:rgba(255,255,255,0.75); text-transform:uppercase; margin-bottom:3px;">🎡 Feria del Caballo · Jerez 2026</div>
+        <div style="font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#fff; line-height:1.2;">La App Oficial de la Feria</div>
+        <div style="font-size:11px; color:rgba(255,255,255,0.75); margin-top:3px;">Mapa 3D · Casetas · Eventos · Amigos · Sin conexión</div>
+      </div>
+      <!-- Badge descarga -->
+      <div style="flex-shrink:0; display:flex; flex-direction:column; align-items:center; gap:4px;">
+        <div style="background:rgba(255,255,255,0.2); border:1.5px solid rgba(255,255,255,0.5); border-radius:20px; padding:6px 16px;">
+          <div style="font-size:9px; color:rgba(255,255,255,0.8); text-align:center; letter-spacing:0.5px;">Disponible en</div>
+          <div style="font-size:13px; color:#fff; font-weight:700; text-align:center; letter-spacing:0.3px;">App Store</div>
+        </div>
+        <div style="font-size:10px; color:rgba(255,255,255,0.6); font-style:italic;">Gratis</div>
+      </div>
+    </div>
+  </a>
+</div>
+
 <!-- BANNER CONTROL OPERACIONES -->
+
 <div style="max-width:900px; margin: 1.5rem auto 0; position:relative; z-index:2;">
   <button onclick="document.getElementById('modal-tracker').style.display='flex'; initTracker();"
      style="width:100%; border:none; cursor:pointer; padding:0; background:transparent; display:block;">
@@ -404,6 +452,7 @@
 </div>
 
 <!-- MODAL TRACKER -->
+
 <div id="modal-tracker" onclick="if(event.target===this)this.style.display='none'"
      style="display:none; position:fixed; inset:0; width:100vw; height:100vh;
             background:#f5f0e8; z-index:9999; align-items:flex-start; justify-content:center; overflow-y:auto;">
@@ -681,69 +730,73 @@ function moveTrackers() {
 }
 </script>
 
-
 <!-- 1. GASTOS -->
+
 <div style="text-align:center; margin:2rem auto 0; max-width:900px; position:relative; z-index:2;">
   <a href="https://tricount.com/tjNjvvpPmVTPaeGsGy" style="display:inline-block; background:#BA7517; color:#fff; font-family:'Playfair Display',serif; font-size:20px; font-weight:700; letter-spacing:1px; padding:18px 48px; border-radius:12px; text-decoration:none;">💰 GASTOS DE VIAJE</a>
   <p style="font-size:12px; color:var(--text-muted); margin-top:10px; font-style:italic;">⚠️ Para acceder hay que instalar la app <strong>Tricount</strong> previamente</p>
 </div>
 
 <!-- 2. TIEMPO -->
+
 <div style="max-width:900px; margin:1.5rem auto 0; position:relative; z-index:2;">
   <div style="background:#fff; border-radius:14px; border:0.5px solid var(--border); padding:16px 20px; box-shadow:0 2px 12px rgba(0,0,0,0.05);">
     <div style="font-size:9px; font-weight:500; letter-spacing:2px; color:var(--amber); text-transform:uppercase; margin-bottom:12px;">🌤️ Previsión del tiempo · Jerez de la Frontera</div>
 
-    <!-- 3 tarjetas diarias -->
-    <div id="weather-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px; text-align:center;">
+```
+<!-- 3 tarjetas diarias -->
+<div id="weather-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px; text-align:center;">
 
-      <!-- Jueves -->
-      <div style="background:#fdf8f0; border-radius:10px; padding:12px 8px; border:1px solid rgba(186,117,23,0.1);">
-        <div style="font-size:9px; font-weight:600; letter-spacing:1.5px; color:var(--amber); text-transform:uppercase;">JUE 14</div>
-        <div id="w-icon-0" style="font-size:32px; margin:6px 0;">⏳</div>
-        <div id="w-desc-0" style="font-size:10px; color:var(--text-muted); margin-bottom:6px;">Cargando...</div>
-        <div style="display:flex; justify-content:center; gap:6px; align-items:baseline; margin-bottom:4px;">
-          <span id="w-max-0" style="font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:#C0392B;">--°</span>
-          <span style="font-size:11px; color:var(--text-muted);">/</span>
-          <span id="w-min-0" style="font-family:'Playfair Display',serif; font-size:14px; font-weight:400; color:#1565C0;">--°</span>
-        </div>
-        <div id="w-rain-0" style="font-size:10px; color:#1565C0; margin-top:2px;">🌧️ --%</div>
-        <div id="w-wind-0" style="font-size:10px; color:var(--text-muted); margin-top:2px;">💨 --</div>
-        <div id="w-sun-0" style="font-size:10px; color:var(--amber); margin-top:2px;">🌅 -- · 🌇 --</div>
-      </div>
-
-      <!-- Viernes -->
-      <div style="background:#fdf8f0; border-radius:10px; padding:12px 8px; border:1px solid rgba(186,117,23,0.15);">
-        <div style="font-size:9px; font-weight:600; letter-spacing:1.5px; color:var(--coral); text-transform:uppercase;">VIE 15</div>
-        <div id="w-icon-1" style="font-size:32px; margin:6px 0;">⏳</div>
-        <div id="w-desc-1" style="font-size:10px; color:var(--text-muted); margin-bottom:6px;">Cargando...</div>
-        <div style="display:flex; justify-content:center; gap:6px; align-items:baseline; margin-bottom:4px;">
-          <span id="w-max-1" style="font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:#C0392B;">--°</span>
-          <span style="font-size:11px; color:var(--text-muted);">/</span>
-          <span id="w-min-1" style="font-family:'Playfair Display',serif; font-size:14px; font-weight:400; color:#1565C0;">--°</span>
-        </div>
-        <div id="w-rain-1" style="font-size:10px; color:#1565C0; margin-top:2px;">🌧️ --%</div>
-        <div id="w-wind-1" style="font-size:10px; color:var(--text-muted); margin-top:2px;">💨 --</div>
-        <div id="w-sun-1" style="font-size:10px; color:var(--amber); margin-top:2px;">🌅 -- · 🌇 --</div>
-      </div>
-
-      <!-- Sábado -->
-      <div style="background:#fdf8f0; border-radius:10px; padding:12px 8px; border:1px solid rgba(59,109,17,0.1);">
-        <div style="font-size:9px; font-weight:600; letter-spacing:1.5px; color:var(--green); text-transform:uppercase;">SÁB 16</div>
-        <div id="w-icon-2" style="font-size:32px; margin:6px 0;">⏳</div>
-        <div id="w-desc-2" style="font-size:10px; color:var(--text-muted); margin-bottom:6px;">Cargando...</div>
-        <div style="display:flex; justify-content:center; gap:6px; align-items:baseline; margin-bottom:4px;">
-          <span id="w-max-2" style="font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:#C0392B;">--°</span>
-          <span style="font-size:11px; color:var(--text-muted);">/</span>
-          <span id="w-min-2" style="font-family:'Playfair Display',serif; font-size:14px; font-weight:400; color:#1565C0;">--°</span>
-        </div>
-        <div id="w-rain-2" style="font-size:10px; color:#1565C0; margin-top:2px;">🌧️ --%</div>
-        <div id="w-wind-2" style="font-size:10px; color:var(--text-muted); margin-top:2px;">💨 --</div>
-        <div id="w-sun-2" style="font-size:10px; color:var(--amber); margin-top:2px;">🌅 -- · 🌇 --</div>
-      </div>
-
+  <!-- Jueves -->
+  <div style="background:#fdf8f0; border-radius:10px; padding:12px 8px; border:1px solid rgba(186,117,23,0.1);">
+    <div style="font-size:9px; font-weight:600; letter-spacing:1.5px; color:var(--amber); text-transform:uppercase;">JUE 14</div>
+    <div id="w-icon-0" style="font-size:32px; margin:6px 0;">⏳</div>
+    <div id="w-desc-0" style="font-size:10px; color:var(--text-muted); margin-bottom:6px;">Cargando...</div>
+    <div style="display:flex; justify-content:center; gap:6px; align-items:baseline; margin-bottom:4px;">
+      <span id="w-max-0" style="font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:#C0392B;">--°</span>
+      <span style="font-size:11px; color:var(--text-muted);">/</span>
+      <span id="w-min-0" style="font-family:'Playfair Display',serif; font-size:14px; font-weight:400; color:#1565C0;">--°</span>
     </div>
+    <div id="w-rain-0" style="font-size:10px; color:#1565C0; margin-top:2px;">🌧️ --%</div>
+    <div id="w-wind-0" style="font-size:10px; color:var(--text-muted); margin-top:2px;">💨 --</div>
+    <div id="w-sun-0" style="font-size:10px; color:var(--amber); margin-top:2px;">🌅 -- · 🌇 --</div>
+  </div>
 
-    <div id="weather-footer" style="font-size:9px; color:rgba(0,0,0,0.25); text-align:center; margin-top:10px; font-style:italic;">Cargando datos en tiempo real...</div>
+  <!-- Viernes -->
+  <div style="background:#fdf8f0; border-radius:10px; padding:12px 8px; border:1px solid rgba(186,117,23,0.15);">
+    <div style="font-size:9px; font-weight:600; letter-spacing:1.5px; color:var(--coral); text-transform:uppercase;">VIE 15</div>
+    <div id="w-icon-1" style="font-size:32px; margin:6px 0;">⏳</div>
+    <div id="w-desc-1" style="font-size:10px; color:var(--text-muted); margin-bottom:6px;">Cargando...</div>
+    <div style="display:flex; justify-content:center; gap:6px; align-items:baseline; margin-bottom:4px;">
+      <span id="w-max-1" style="font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:#C0392B;">--°</span>
+      <span style="font-size:11px; color:var(--text-muted);">/</span>
+      <span id="w-min-1" style="font-family:'Playfair Display',serif; font-size:14px; font-weight:400; color:#1565C0;">--°</span>
+    </div>
+    <div id="w-rain-1" style="font-size:10px; color:#1565C0; margin-top:2px;">🌧️ --%</div>
+    <div id="w-wind-1" style="font-size:10px; color:var(--text-muted); margin-top:2px;">💨 --</div>
+    <div id="w-sun-1" style="font-size:10px; color:var(--amber); margin-top:2px;">🌅 -- · 🌇 --</div>
+  </div>
+
+  <!-- Sábado -->
+  <div style="background:#fdf8f0; border-radius:10px; padding:12px 8px; border:1px solid rgba(59,109,17,0.1);">
+    <div style="font-size:9px; font-weight:600; letter-spacing:1.5px; color:var(--green); text-transform:uppercase;">SÁB 16</div>
+    <div id="w-icon-2" style="font-size:32px; margin:6px 0;">⏳</div>
+    <div id="w-desc-2" style="font-size:10px; color:var(--text-muted); margin-bottom:6px;">Cargando...</div>
+    <div style="display:flex; justify-content:center; gap:6px; align-items:baseline; margin-bottom:4px;">
+      <span id="w-max-2" style="font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:#C0392B;">--°</span>
+      <span style="font-size:11px; color:var(--text-muted);">/</span>
+      <span id="w-min-2" style="font-family:'Playfair Display',serif; font-size:14px; font-weight:400; color:#1565C0;">--°</span>
+    </div>
+    <div id="w-rain-2" style="font-size:10px; color:#1565C0; margin-top:2px;">🌧️ --%</div>
+    <div id="w-wind-2" style="font-size:10px; color:var(--text-muted); margin-top:2px;">💨 --</div>
+    <div id="w-sun-2" style="font-size:10px; color:var(--amber); margin-top:2px;">🌅 -- · 🌇 --</div>
+  </div>
+
+</div>
+
+<div id="weather-footer" style="font-size:9px; color:rgba(0,0,0,0.25); text-align:center; margin-top:10px; font-style:italic;">Cargando datos en tiempo real...</div>
+```
+
   </div>
 </div>
 
@@ -900,6 +953,7 @@ function moveTrackers() {
 </script>
 
 <!-- 3. HOTEL -->
+
 <div style="max-width:900px; margin:1.5rem auto 0; position:relative; z-index:2; background: linear-gradient(135deg, #0D3B6E 0%, #1565C0 50%, #0D3B6E 100%); border:none; border-radius:12px; padding:14px 20px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; box-shadow:0 4px 20px rgba(21,101,192,0.3);">
   <div style="display:flex; align-items:center; gap:12px;">
     <span style="font-size:22px;">🏨</span>
@@ -916,6 +970,7 @@ function moveTrackers() {
 </div>
 
 <!-- 4. SPOTIFY -->
+
 <div style="max-width:900px; margin:1.5rem auto 0; position:relative; z-index:2;">
   <a href="https://open.spotify.com/playlist/4J7sAvAPcpCCNl661iBwFp" target="_blank"
      style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px;
@@ -939,6 +994,7 @@ function moveTrackers() {
 </div>
 
 <!-- 5. MAPA -->
+
 <div style="max-width:900px; margin:1.5rem auto 0; position:relative; z-index:2;">
   <button onclick="document.getElementById('modal-mapa').style.display='flex'" style="width:100%; border:none; cursor:pointer; padding:0; background:transparent; display:block;">
     <div style="background:linear-gradient(135deg, #1B3A1B 0%, #2E6B2E 50%, #1B3A1B 100%); border-radius:14px; padding:18px 24px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; box-shadow:0 4px 20px rgba(0,80,0,0.25);" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
@@ -954,8 +1010,8 @@ function moveTrackers() {
   </button>
 </div>
 
-
 <!-- 6. BOTIQUÍN -->
+
 <div style="max-width:900px; margin:1.5rem auto 0; position:relative; z-index:2;">
   <button onclick="document.getElementById('modal-botiquin').style.display='flex'" style="width:100%; border:none; cursor:pointer; padding:0; background:transparent; display:block;">
     <div style="background:linear-gradient(135deg, #7B0000 0%, #C0392B 50%, #7B0000 100%); border-radius:14px; padding:18px 24px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; box-shadow:0 4px 20px rgba(192,57,43,0.3);" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
@@ -972,9 +1028,11 @@ function moveTrackers() {
 </div>
 
 <!-- 7. FOOTER -->
+
 <footer style="margin-top:1.5rem;">Feria del Caballo · Jerez de la Frontera · Mayo 2026</footer>
 
 <!-- AUDIO -->
+
 <audio id="bg-music" autoplay loop muted>
   <source src="https://raw.githubusercontent.com/webdedisfrutar/WEB/main/Abril.mp3" type="audio/mpeg">
 </audio>
@@ -990,6 +1048,7 @@ function moveTrackers() {
 </script>
 
 <!-- MODALES -->
+
 <div id="modal-coche" onclick="if(event.target===this)this.style.display='none'"
      style="display:none; position:fixed; inset:0; width:100vw; height:100vh;
             background:rgba(0,0,0,0.92); z-index:9999; align-items:center; justify-content:center; overflow-y:auto;">
@@ -1070,7 +1129,9 @@ function moveTrackers() {
 </div>
 
 <!-- CANVAS Y MENSAJE -->
+
 <canvas id="fireworks-canvas" style="display:none; position:fixed; inset:0; z-index:99990; pointer-events:none;"></canvas>
+
 <div id="bailar-msg" style="display:none; position:fixed; inset:0; z-index:99991; align-items:center; justify-content:center; pointer-events:none; transition:opacity 1s;">
   <div style="text-align:center;">
     <div style="font-family:'Playfair Display',serif; font-size:72px; font-weight:700; color:#fff; text-shadow:0 0 40px rgba(186,117,23,0.9), 0 0 80px rgba(186,117,23,0.5); letter-spacing:4px;">¡A BAILAR!</div>
