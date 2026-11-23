@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Feria del Caballo · Jerez 2026</title>
+<title>DISFRUTAR · Viajes y experiencias</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -76,7 +76,7 @@
             background-image: linear-gradient(160deg, rgba(26,15,0,0.88) 0%, rgba(58,26,0,0.75) 40%, rgba(26,10,10,0.88) 100%), url('https://raw.githubusercontent.com/webdedisfrutar/WEB/main/feria.jpg');
             background-size: cover; background-position: center;
             display:flex; flex-direction:column; align-items:center; justify-content:center;
-            cursor:pointer; padding:30px;">
+            padding:30px; overflow-y:auto;">
   <div id="overlay-title" style="font-family:'Playfair Display',serif; font-size:84px; font-weight:700; letter-spacing:8px; color:#fff; text-align:center; line-height:1.1; text-shadow: 0 2px 20px rgba(186,117,23,0.6); width:100%; box-sizing:border-box; padding:0 20px; text-indent:8px;">DISFRUTAR</div>
   <style>
     @media (max-width: 500px) {
@@ -90,16 +90,28 @@
   </style>
   <div style="font-size:11px; letter-spacing:4px; color:#BA7517; margin-top:8px; font-family:'DM Sans',sans-serif; text-transform:uppercase;">viajes · experiencias</div>
   <div style="width:1px; height:40px; background:rgba(186,117,23,0.4); margin:22px 0;"></div>
-  <div style="font-family:'Playfair Display',serif; font-size:18px; color:#FAC775; letter-spacing:2px; text-align:center;">Feria del Caballo · Jerez 2026</div>
-  <div style="font-size:12px; color:rgba(255,255,255,0.5); margin-top:6px; font-family:'DM Sans',sans-serif; letter-spacing:1px;">14 · 15 · 16 Mayo</div>
-  <img src="https://raw.githubusercontent.com/webdedisfrutar/WEB/main/flores.png" style="width:220px; opacity:0.9; margin-top:10px;">
-  <button onclick="enterSite(event)"
-          style="margin-top:28px; background:transparent; border:1.5px solid #BA7517; color:#BA7517; font-family:'Playfair Display',serif; font-size:15px; letter-spacing:3px; padding:14px 40px; border-radius:40px; cursor:pointer; transition: all 0.3s; text-transform:uppercase;"
-          onmouseover="this.style.background='#BA7517'; this.style.color='#fff';"
-          onmouseout="this.style.background='transparent'; this.style.color='#BA7517';">
-    ✦ &nbsp;Entrar a la Feria&nbsp; ✦
+  <style>
+    .evento-btn {
+      display:block; width:340px; max-width:86vw; box-sizing:border-box;
+      background:transparent; border:1.5px solid #BA7517; border-radius:40px;
+      padding:14px 28px; cursor:pointer; text-align:center; text-decoration:none;
+      transition: all 0.3s;
+    }
+    .evento-btn .ev-titulo { font-family:'Playfair Display',serif; font-size:17px; color:#FAC775; letter-spacing:1.5px; transition: color 0.3s; }
+    .evento-btn .ev-fechas { font-family:'DM Sans',sans-serif; font-size:11px; color:rgba(255,255,255,0.5); letter-spacing:1px; margin-top:5px; transition: color 0.3s; }
+    .evento-btn:hover { background:#BA7517; }
+    .evento-btn:hover .ev-titulo, .evento-btn:hover .ev-fechas { color:#fff; }
+  </style>
+  <!-- EVENTOS: añadir aquí los nuevos, separados por las flores -->
+  <button class="evento-btn" onclick="enterSite(event)">
+    <div class="ev-titulo">Feria del Caballo · Jerez 2026</div>
+    <div class="ev-fechas">14 · 15 · 16 Mayo 2026</div>
   </button>
-  <div style="font-size:10px; color:rgba(255,255,255,0.25); margin-top:16px; font-family:'DM Sans',sans-serif; letter-spacing:1px;">toca en cualquier parte para entrar</div>
+  <img src="https://raw.githubusercontent.com/webdedisfrutar/WEB/main/flores.png" style="width:220px; opacity:0.9; margin:14px 0;">
+  <a class="evento-btn" href="sevilla2027.html">
+    <div class="ev-titulo">Feria de Sevilla 2027</div>
+    <div class="ev-fechas">12 – 18 Abril 2027</div>
+  </a>
 </div>
 
 <script>
@@ -198,7 +210,6 @@
     const music = document.getElementById("bg-music");
     if (music) { music.muted = false; music.play(); const btn = document.getElementById("btn-mute"); if (btn) { btn.innerHTML = "🔊"; btn.style.background = "var(--amber)"; } }
   }
-  document.getElementById("welcome-overlay").addEventListener("click", closeOverlay);
 </script>
 
 <div class="page-bg"></div>
